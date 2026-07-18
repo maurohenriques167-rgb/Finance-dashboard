@@ -4,7 +4,7 @@ let grafico = null;
 
 let todasTransacoes = [];
 
-const API = "http://localhost:3000/transactions";
+const API = "https://finance-dashboard.onrender.com/transactions";
 
 
 // ===============================
