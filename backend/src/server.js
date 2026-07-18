@@ -1,53 +1,78 @@
 const express = require("express");
 const cors = require("cors");
-const cors = require("cors");
 
+const sequelize = require("./config/database");
+const transactionRoutes = require("./routes/transactions");
+
+const app = express();
+
+
+// CORS - permite o Vercel acessar o backend
 app.use(cors({
     origin: "https://finance-dashboard-alpha-ebon-63.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
 
-app.use(express.json());
 
-const sequelize = require("./config/database");
-const transactionRoutes = require("./routes/transactions");
-
-console.log("TIPO DA ROTA:", typeof transactionRoutes);
-console.log("CONTEUDO DA ROTA:", transactionRoutes);
-
-const app = express();
-
-app.use(cors());
+// Receber JSON
 app.use(express.json());
 
 
+// Teste do servidor
 app.get("/", (req, res) => {
     res.send("Servidor funcionando!");
 });
 
 
+// Rotas das transações
 app.use("/transactions", (req, res, next) => {
+
     console.log("Entrou na rota transactions");
+
     next();
+
 }, transactionRoutes);
 
 
+// Conectar banco
 sequelize.authenticate()
+
 .then(() => {
+
     console.log("Banco conectado com sucesso!");
+
 })
+
 .catch(error => {
+
     console.log("Erro no banco:", error);
-});
-sequelize.sync()
-.then(() => {
-    console.log("Banco sincronizado");
-})
-.catch(err => {
-    console.log("Erro ao sincronizar:", err);
+
 });
 
-app.listen(3000, () => {
-    console.log("Servidor rodando na porta 3000");
+
+// Criar/atualizar tabelas
+sequelize.sync()
+
+.then(() => {
+
+    console.log("Banco sincronizado");
+
+})
+
+.catch(err => {
+
+    console.log("Erro ao sincronizar:", err);
+
+});
+
+
+// Render usa a porta da variável PORT
+const PORT = process.env.PORT || 3000;
+
+
+app.listen(PORT, () => {
+
+    console.log(`Servidor rodando na porta: ${PORT}`);
+
 });
