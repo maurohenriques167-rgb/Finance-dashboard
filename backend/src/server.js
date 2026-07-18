@@ -31,7 +31,13 @@ sequelize.authenticate()
 .catch(error => {
     console.log("Erro no banco:", error);
 });
-
+sequelize.sync()
+.then(() => {
+    console.log("Banco sincronizado");
+})
+.catch(err => {
+    console.log("Erro ao sincronizar:", err);
+});
 
 app.listen(3000, () => {
     console.log("Servidor rodando na porta 3000");
