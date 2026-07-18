@@ -1,5 +1,14 @@
 const express = require("express");
 const cors = require("cors");
+const cors = require("cors");
+
+app.use(cors({
+    origin: "https://finance-dashboard-alpha-ebon-63.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}));
+
+app.use(express.json());
 
 const sequelize = require("./config/database");
 const transactionRoutes = require("./routes/transactions");
