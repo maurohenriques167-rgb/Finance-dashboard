@@ -4,7 +4,7 @@ let grafico = null;
 
 let todasTransacoes = [];
 
-const API = "https://finance-dashboard.onrender.com/transactions";
+const API = "https://finance-dashboard-qr30.onrender.com";
 
 
 // ===============================
@@ -15,20 +15,15 @@ async function carregarDados(){
 
     try{
 
-
-        const resposta = await fetch(API);
+        const resposta = await fetch(`${API}/transactions`);
 
         const dados = await resposta.json();
-
 
         todasTransacoes = dados;
 
         window.transacoes = dados;
 
-
-
         atualizarDashboard(dados);
-
 
 
     }catch(error){
@@ -37,10 +32,7 @@ async function carregarDados(){
 
     }
 
-
 }
-
-
 
 
 // ===============================
@@ -49,19 +41,14 @@ async function carregarDados(){
 
 function atualizarDashboard(dados){
 
-
-
     let receitas = 0;
 
     let despesas = 0;
 
 
-
     dados.forEach(item=>{
 
-
         const valor = Number(item.amount);
-
 
 
         if(item.type === "receita"){
@@ -74,33 +61,26 @@ function atualizarDashboard(dados){
 
         }
 
-
     });
 
 
 
-
     document.getElementById("receitas").innerHTML =
-
     "R$ " + receitas.toFixed(2);
 
 
 
     document.getElementById("despesas").innerHTML =
-
     "R$ " + despesas.toFixed(2);
 
 
 
     document.getElementById("saldo").innerHTML =
-
     "R$ " + (receitas - despesas).toFixed(2);
 
 
 
-
     mostrarTransacoes(dados);
-
 
 
     criarGrafico(
@@ -108,12 +88,7 @@ function atualizarDashboard(dados){
         despesas
     );
 
-
 }
-
-
-
-
 
 
 
@@ -124,23 +99,18 @@ function atualizarDashboard(dados){
 function mostrarTransacoes(dados){
 
 
-
     const lista =
     document.getElementById("transacoes");
-
 
 
     lista.innerHTML = "";
 
 
-
     dados.forEach(item=>{
-
 
 
         const valor =
         Number(item.amount);
-
 
 
         const classe =
@@ -149,12 +119,10 @@ function mostrarTransacoes(dados){
         : "despesa";
 
 
-
         const sinal =
         item.type === "receita"
         ? "+"
         : "-";
-
 
 
 
@@ -173,10 +141,15 @@ ${item.description}
 
 
 <small>
-    🏷️ ${item.category || "Outros"}
-    <br>
-    📅 ${item.date}
+
+🏷️ ${item.category || "Outros"}
+
+<br>
+
+📅 ${item.date}
+
 </small>
+
 
 </div>
 
@@ -216,16 +189,10 @@ ${sinal} R$ ${valor.toFixed(2)}
 
 `;
 
-
-
     });
 
 
-
 }
-
-
-
 
 
 
@@ -235,7 +202,6 @@ ${sinal} R$ ${valor.toFixed(2)}
 
 
 function aplicarFiltros(){
-
 
 
     const texto =
@@ -253,12 +219,9 @@ function aplicarFiltros(){
 
 
 
-
-
     const filtradas =
 
     todasTransacoes.filter(item=>{
-
 
 
         const nome =
@@ -284,24 +247,17 @@ function aplicarFiltros(){
 
 
 
-
         return buscaOK && tipoOK;
-
 
 
     });
 
 
 
-
-
     mostrarTransacoes(filtradas);
 
 
-
 }
-
-
 
 
 
@@ -323,9 +279,6 @@ aplicarFiltros
 
 
 
-
-
-
 // ===============================
 // GRÁFICO
 // ===============================
@@ -334,10 +287,8 @@ aplicarFiltros
 function criarGrafico(receitas, despesas){
 
 
-
     const canvas =
     document.getElementById("graficoFinanceiro");
-
 
 
     if(!canvas){
@@ -356,21 +307,16 @@ function criarGrafico(receitas, despesas){
 
 
 
-
     const dark =
 
     document.body.classList.contains("dark");
 
 
 
-
-
     grafico = new Chart(canvas,{
 
 
-
         type:"doughnut",
-
 
 
         data:{
@@ -387,7 +333,6 @@ function criarGrafico(receitas, despesas){
 
 
             datasets:[{
-
 
                 data:[
 
@@ -417,16 +362,13 @@ function criarGrafico(receitas, despesas){
             }]
 
 
-
         },
-
 
 
         options:{
 
 
             responsive:true,
-
 
 
             plugins:{
@@ -438,9 +380,6 @@ function criarGrafico(receitas, despesas){
                     position:"bottom",
 
 
-                    align:"center",
-
-
 
                     labels:{
 
@@ -448,9 +387,13 @@ function criarGrafico(receitas, despesas){
                         color:
 
                         dark
+
                         ?
+
                         "#ffffff"
+
                         :
+
                         "#000000",
 
 
@@ -463,11 +406,7 @@ function criarGrafico(receitas, despesas){
                             weight:"bold"
 
 
-                        },
-
-
-                        padding:20
-
+                        }
 
                     }
 
@@ -481,9 +420,7 @@ function criarGrafico(receitas, despesas){
         }
 
 
-
     });
-
 
 
 }
@@ -494,30 +431,22 @@ function criarGrafico(receitas, despesas){
 
 function deletarTransacao(id){
 
-
     idParaExcluir = id;
-
 
 
     document.getElementById("modalExcluir")
     .style.display = "flex";
 
-
 }
-
 
 
 
 function fecharModalExcluir(){
 
-
     document.getElementById("modalExcluir")
     .style.display = "none";
 
-
 }
-
-
 
 
 
@@ -525,49 +454,51 @@ function fecharModalExcluir(){
 document.addEventListener("click", async (e)=>{
 
 
-
     if(e.target.id === "cancelarExcluir"){
-
 
         fecharModalExcluir();
 
-
     }
-
-
 
 
 
     if(e.target.id === "confirmarExcluir"){
 
 
-
-        await fetch(`${API}/${idParaExcluir}`,{
-
-
-            method:"DELETE"
+        try{
 
 
-        });
+            await fetch(
+                `${API}/transactions/${idParaExcluir}`,
+                {
+
+                    method:"DELETE"
+
+                }
+
+            );
 
 
-
-        fecharModalExcluir();
-
+            fecharModalExcluir();
 
 
-        carregarDados();
+            carregarDados();
 
+
+        }catch(error){
+
+            console.log(
+                "Erro ao excluir:",
+                error
+            );
+
+        }
 
 
     }
 
 
-
 });
-
-
-
 
 
 
@@ -584,7 +515,9 @@ function editarTransacao(id){
     const transacao =
 
     todasTransacoes.find(
+
         item => item.id === id
+
     );
 
 
@@ -598,11 +531,9 @@ function editarTransacao(id){
 
 
 
-
     document.getElementById("descricao").value =
 
     transacao.description;
-
 
 
 
@@ -612,11 +543,9 @@ function editarTransacao(id){
 
 
 
-
     document.getElementById("tipo").value =
 
     transacao.type;
-
 
 
 
@@ -626,10 +555,17 @@ function editarTransacao(id){
 
 
 
+    if(document.getElementById("categoria")){
+
+        document.getElementById("categoria").value =
+
+        transacao.category || "Outros";
+
+    }
+
 
 
     editandoId = id;
-
 
 
 
@@ -638,12 +574,7 @@ function editarTransacao(id){
     "Salvar edição";
 
 
-
 }
-
-
-
-
 
 
 
@@ -656,157 +587,206 @@ function editarTransacao(id){
 
 const formulario =
 
-document.querySelector("form");
+document.querySelector("#formTransacao");
 
 
 
 
-formulario.addEventListener("submit", async(e)=>{
-
+formulario.addEventListener(
+"submit",
+async(e)=>{
 
 
     e.preventDefault();
 
 
 
+    const categoria =
 
+    document.querySelector("#categoria")
+    ?
 
-   const dados = {
-
-    description:
-    document.getElementById("descricao").value,
-
-
-    amount:
-    document.getElementById("valor").value,
-
-
-    type:
-    document.getElementById("tipo").value,
-
-
-    date:
-    document.getElementById("data").value,
-
-
-    category:
-document.querySelector("#categoria").value
-
-};
-console.log(
-    "Categoria escolhida:",
     document.querySelector("#categoria").value
-);
-console.log(dados);
+
+    :
+
+    "Outros";
 
 
 
 
 
-
-    if(editandoId){
-
+    const dados = {
 
 
-        await fetch(`${API}/${editandoId}`,{
+        description:
 
-
-            method:"PUT",
+        document.getElementById("descricao").value,
 
 
 
-            headers:{
+        amount:
 
-
-                "Content-Type":"application/json"
-
-
-            },
+        document.getElementById("valor").value,
 
 
 
-            body:JSON.stringify(dados)
+        type:
+
+        document.getElementById("tipo").value,
 
 
 
-        });
+        date:
+
+        document.getElementById("data").value,
 
 
 
+        category:
+
+        categoria
 
 
-        editandoId = null;
+    };
 
 
 
-
-
-        document.getElementById("botaoSalvar").innerHTML =
-
-        "Adicionar";
-
+    console.log(
+        "Dados enviados:",
+        dados
+    );
 
 
 
 
-    }else{
+
+    try{
 
 
 
-        await fetch(API,{
+        // EDITAR
+
+        if(editandoId){
 
 
 
-            method:"POST",
+            await fetch(
+
+                `${API}/transactions/${editandoId}`,
+
+                {
+
+
+                    method:"PUT",
+
+
+                    headers:{
+
+
+                        "Content-Type":
+
+                        "application/json"
+
+
+                    },
+
+
+                    body:
+
+                    JSON.stringify(dados)
+
+
+                }
+
+
+            );
 
 
 
-            headers:{
 
-
-                "Content-Type":"application/json"
-
-
-            },
+            editandoId = null;
 
 
 
-            body:JSON.stringify(dados)
+            document.getElementById("botaoSalvar")
+            .innerHTML =
+
+            "Adicionar";
 
 
 
-        });
+        }
 
+
+
+        // NOVA TRANSAÇÃO
+
+        else{
+
+
+
+            await fetch(
+
+                `${API}/transactions`,
+
+                {
+
+
+                    method:"POST",
+
+
+                    headers:{
+
+
+                        "Content-Type":
+
+                        "application/json"
+
+
+                    },
+
+
+                    body:
+
+                    JSON.stringify(dados)
+
+
+                }
+
+
+            );
+
+
+        }
+
+
+
+
+
+        formulario.reset();
+
+
+        carregarDados();
+
+
+
+    }catch(error){
+
+
+        console.log(
+
+            "Erro ao salvar:",
+            error
+
+        );
 
 
     }
 
 
 
-
-
-
-
-    formulario.reset();
-
-
-
-    carregarDados();
-
-
-
-
-
 });
-
-
-
-
-
-
-
-
-
 // ===============================
 // TEMA ESCURO
 // ===============================
@@ -820,15 +800,11 @@ document.getElementById("temaBtn");
 
 
 
-
 function atualizarGraficoTema(){
-
 
     carregarDados();
 
-
 }
-
 
 
 
@@ -838,10 +814,7 @@ function atualizarGraficoTema(){
 if(temaBtn){
 
 
-
     temaBtn.onclick = function(){
-
-
 
 
 
@@ -851,8 +824,9 @@ if(temaBtn){
 
 
 
-
-        if(document.body.classList.contains("dark")){
+        if(
+            document.body.classList.contains("dark")
+        ){
 
 
 
@@ -881,10 +855,7 @@ if(temaBtn){
             );
 
 
-
         }
-
-
 
 
 
@@ -893,16 +864,10 @@ if(temaBtn){
 
 
 
-
     };
 
 
-
 }
-
-
-
-
 
 
 
@@ -913,7 +878,11 @@ if(temaBtn){
 // ===============================
 
 
-if(localStorage.getItem("tema") === "dark"){
+if(
+    localStorage.getItem("tema")
+    ===
+    "dark"
+){
 
 
 
@@ -931,9 +900,6 @@ if(localStorage.getItem("tema") === "dark"){
 
 
 }
-
-
-
 
 
 
