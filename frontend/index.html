@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Finance Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>💰 Finance Dashboard</h1>
+
+    <button id="temaBtn" class="tema-btn">
+        🌙
+    </button>
+
+    <p>
+        Controle suas receitas e despesas
+    </p>
+
+</header>
+
+
+
+<main>
+
+
+<section class="resumo">
+
+
+<div class="card saldo">
+
+<h3>
+💰 Saldo atual
+</h3>
+
+<strong id="saldo">
+R$ 0,00
+</strong>
+
+</div>
+
+
+
+
+<div class="card receita-card">
+
+<h3>
+📈 Receitas
+</h3>
+
+<strong id="receitas">
+R$ 0,00
+</strong>
+
+</div>
+
+
+
+
+
+<div class="card despesa-card">
+
+<h3>
+📉 Despesas
+</h3>
+
+<strong id="despesas">
+R$ 0,00
+</strong>
+
+</div>
+
+
+</section>
+
+
+
+
+
+<section class="grafico">
+
+
+<h2>
+Resumo financeiro
+</h2>
+
+
+<canvas id="graficoFinanceiro"></canvas>
+
+
+</section>
+
+
+
+
+
+
+<section class="formulario">
+
+
+<h2>
+Adicionar transação
+</h2>
+
+
+
+<form id="formTransacao">
+
+
+
+<input 
+type="text"
+id="descricao"
+placeholder="Descrição"
+required>
+
+
+
+
+<input
+type="number"
+id="valor"
+placeholder="Valor"
+step="0.01"
+required>
+
+
+
+
+
+<select id="tipo">
+
+
+<option value="receita">
+📈 Receita
+</option>
+
+
+<option value="despesa">
+📉 Despesa
+</option>
+
+
+</select>
+
+
+
+
+
+
+<!-- NOVO CAMPO DE CATEGORIA -->
+
+<select id="categoria">
+
+
+<option value="Alimentação">
+🛒 Alimentação
+</option>
+
+
+<option value="Moradia">
+🏠 Moradia
+</option>
+
+
+<option value="Transporte">
+🚗 Transporte
+</option>
+
+
+<option value="Lazer">
+🎮 Lazer
+</option>
+
+
+<option value="Trabalho">
+💼 Trabalho
+</option>
+
+
+<option value="Estudos">
+📚 Estudos
+</option>
+
+
+<option value="Contas">
+💡 Contas
+</option>
+
+
+<option value="Outros">
+📦 Outros
+</option>
+
+
+</select>
+
+
+
+
+
+<input
+type="date"
+id="data"
+required>
+
+
+
+
+
+
+<button 
+type="submit"
+id="botaoSalvar">
+
+Adicionar
+
+</button>
+
+
+
+</form>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<section class="lista">
+
+
+<h2>
+Últimas transações
+</h2>
+
+
+
+
+
+<div class="filtros">
+
+
+<input
+type="text"
+id="pesquisa"
+placeholder="🔎 Pesquisar transação..."
+>
+
+
+
+
+<select id="filtroTipo">
+
+
+<option value="todos">
+Todas
+</option>
+
+
+<option value="receita">
+Receitas
+</option>
+
+
+<option value="despesa">
+Despesas
+</option>
+
+
+</select>
+
+
+
+</div>
+
+
+
+
+
+
+
+<ul id="transacoes"></ul>
+
+
+
+
+</section>
+
+
+
+
+</main>
+
+
+
+
+
+
+
+<!-- MODAL EXCLUSÃO -->
+
+
+<div id="modalExcluir" class="modal">
+
+
+<div class="modal-conteudo">
+
+
+<h3>
+Excluir transação?
+</h3>
+
+
+
+<p>
+Essa ação não pode ser desfeita.
+</p>
+
+
+
+
+<div class="modal-botoes">
+
+
+<button id="cancelarExcluir">
+
+Cancelar
+
+</button>
+
+
+
+
+<button id="confirmarExcluir">
+
+Excluir
+
+</button>
+
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
