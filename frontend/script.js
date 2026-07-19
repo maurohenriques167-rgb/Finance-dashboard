@@ -6,7 +6,14 @@ let todasTransacoes = [];
 
 const API = "https://finance-dashboard-qr30.onrender.com";
 
+// VERIFICAR LOGIN
+// ===============================
 
+if(!localStorage.getItem("token")){
+
+    window.location.href = "login.html";
+
+}
 // ===============================
 // TOKEN
 // ===============================
