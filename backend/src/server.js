@@ -22,20 +22,23 @@ app.use(cors());
 // JSON
 app.use(express.json());
 
+const path = require("path");
 
-// ===============================
+
 // SERVIR FRONTEND
-// ===============================
+app.use(express.static(
+    path.join(__dirname, "../../frontend")
+));
 
-app.use(express.static(path.join(__dirname, "../../frontend")));
 
-
-
-// Página inicial
+// TESTE DA PÁGINA INICIAL
 app.get("/", (req,res)=>{
 
     res.sendFile(
-        path.join(__dirname,"../../frontend/index.html")
+        path.resolve(
+            __dirname,
+            "../../frontend/index.html"
+        )
     );
 
 });
