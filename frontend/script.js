@@ -8,6 +8,18 @@ const API = "https://finance-dashboard-qr30.onrender.com";
 
 
 // ===============================
+// TOKEN
+// ===============================
+
+function getToken(){
+
+    return localStorage.getItem("token");
+
+}
+
+
+
+// ===============================
 // CARREGAR DADOS
 // ===============================
 
@@ -15,15 +27,39 @@ async function carregarDados(){
 
     try{
 
-        const resposta = await fetch(`${API}/transactions`);
+
+        const resposta = await fetch(`${API}/transactions`, {
+
+            headers:{
+                "Authorization": `Bearer ${getToken()}`
+            }
+
+        });
+
+
 
         const dados = await resposta.json();
+
+
+
+        if(!resposta.ok){
+
+            console.log("Erro API:", dados);
+
+            return;
+
+        }
+
+
 
         todasTransacoes = dados;
 
         window.transacoes = dados;
 
+
+
         atualizarDashboard(dados);
+
 
 
     }catch(error){
@@ -35,20 +71,26 @@ async function carregarDados(){
 }
 
 
+
+
 // ===============================
 // ATUALIZAR DASHBOARD
 // ===============================
 
 function atualizarDashboard(dados){
 
+
     let receitas = 0;
 
     let despesas = 0;
 
 
+
     dados.forEach(item=>{
 
+
         const valor = Number(item.amount);
+
 
 
         if(item.type === "receita"){
@@ -61,7 +103,9 @@ function atualizarDashboard(dados){
 
         }
 
+
     });
+
 
 
 
@@ -83,12 +127,17 @@ function atualizarDashboard(dados){
     mostrarTransacoes(dados);
 
 
+
     criarGrafico(
         receitas,
         despesas
     );
 
+
 }
+
+
+
 
 
 
@@ -103,20 +152,23 @@ function mostrarTransacoes(dados){
     document.getElementById("transacoes");
 
 
+
     lista.innerHTML = "";
+
 
 
     dados.forEach(item=>{
 
 
-        const valor =
-        Number(item.amount);
+        const valor = Number(item.amount);
+
 
 
         const classe =
         item.type === "receita"
         ? "receita"
         : "despesa";
+
 
 
         const sinal =
@@ -189,10 +241,15 @@ ${sinal} R$ ${valor.toFixed(2)}
 
 `;
 
+
+
     });
 
 
 }
+
+
+
 
 
 
@@ -205,7 +262,6 @@ function aplicarFiltros(){
 
 
     const texto =
-
     document.getElementById("pesquisa")
     .value
     .toLowerCase();
@@ -213,36 +269,27 @@ function aplicarFiltros(){
 
 
     const tipo =
-
     document.getElementById("filtroTipo")
     .value;
 
 
 
-    const filtradas =
-
-    todasTransacoes.filter(item=>{
+    const filtradas = todasTransacoes.filter(item=>{
 
 
         const nome =
-
-        item.description
-        .toLowerCase();
+        item.description.toLowerCase();
 
 
 
         const buscaOK =
-
         nome.includes(texto);
 
 
 
         const tipoOK =
-
         tipo === "todos"
-
         ||
-
         item.type === tipo;
 
 
@@ -279,6 +326,8 @@ aplicarFiltros
 
 
 
+
+
 // ===============================
 // GRÁFICO
 // ===============================
@@ -289,6 +338,7 @@ function criarGrafico(receitas, despesas){
 
     const canvas =
     document.getElementById("graficoFinanceiro");
+
 
 
     if(!canvas){
@@ -308,7 +358,6 @@ function criarGrafico(receitas, despesas){
 
 
     const dark =
-
     document.body.classList.contains("dark");
 
 
@@ -325,19 +374,17 @@ function criarGrafico(receitas, despesas){
             labels:[
 
                 "Receitas",
-
                 "Despesas"
 
             ],
 
 
-
             datasets:[{
+
 
                 data:[
 
                     receitas,
-
                     despesas
 
                 ],
@@ -347,14 +394,13 @@ function criarGrafico(receitas, despesas){
                 backgroundColor:[
 
                     "#22c55e",
-
                     "#ef4444"
 
                 ],
 
 
-
                 borderWidth:0,
+
 
                 hoverOffset:15
 
@@ -380,33 +426,16 @@ function criarGrafico(receitas, despesas){
                     position:"bottom",
 
 
-
                     labels:{
 
 
                         color:
-
                         dark
-
                         ?
-
                         "#ffffff"
-
                         :
+                        "#000000"
 
-                        "#000000",
-
-
-
-                        font:{
-
-
-                            size:15,
-
-                            weight:"bold"
-
-
-                        }
 
                     }
 
@@ -451,14 +480,19 @@ function fecharModalExcluir(){
 
 
 
-document.addEventListener("click", async (e)=>{
+
+document.addEventListener("click", async(e)=>{
 
 
     if(e.target.id === "cancelarExcluir"){
 
+
         fecharModalExcluir();
 
+
     }
+
+
 
 
 
@@ -468,29 +502,51 @@ document.addEventListener("click", async (e)=>{
         try{
 
 
-            await fetch(
+            const resposta = await fetch(
+
                 `${API}/transactions/${idParaExcluir}`,
+
                 {
 
-                    method:"DELETE"
+                    method:"DELETE",
+
+                    headers:{
+
+                        "Authorization":
+                        `Bearer ${getToken()}`
+
+                    }
 
                 }
 
             );
 
 
+
+            const resultado = await resposta.json();
+
+
+
+            console.log(resultado);
+
+
+
             fecharModalExcluir();
+
 
 
             carregarDados();
 
 
+
         }catch(error){
+
 
             console.log(
                 "Erro ao excluir:",
                 error
             );
+
 
         }
 
@@ -503,6 +559,8 @@ document.addEventListener("click", async (e)=>{
 
 
 
+
+
 // ===============================
 // EDITAR TRANSAÇÃO
 // ===============================
@@ -511,12 +569,11 @@ document.addEventListener("click", async (e)=>{
 function editarTransacao(id){
 
 
-
     const transacao =
 
     todasTransacoes.find(
 
-        item => item.id === id
+        item=>item.id === id
 
     );
 
@@ -537,9 +594,11 @@ function editarTransacao(id){
 
 
 
+
     document.getElementById("valor").value =
 
     transacao.amount;
+
 
 
 
@@ -549,19 +608,24 @@ function editarTransacao(id){
 
 
 
+
     document.getElementById("data").value =
 
     transacao.date;
 
 
 
+
     if(document.getElementById("categoria")){
+
 
         document.getElementById("categoria").value =
 
         transacao.category || "Outros";
 
+
     }
+
 
 
 
@@ -580,6 +644,8 @@ function editarTransacao(id){
 
 
 
+
+
 // ===============================
 // FORMULÁRIO
 // ===============================
@@ -593,7 +659,9 @@ document.querySelector("#formTransacao");
 
 
 formulario.addEventListener(
+
 "submit",
+
 async(e)=>{
 
 
@@ -601,9 +669,12 @@ async(e)=>{
 
 
 
+
+
     const categoria =
 
     document.querySelector("#categoria")
+
     ?
 
     document.querySelector("#categoria").value
@@ -652,6 +723,7 @@ async(e)=>{
 
 
 
+
     console.log(
         "Dados enviados:",
         dados
@@ -665,13 +737,16 @@ async(e)=>{
 
 
 
+        // =====================
         // EDITAR
+        // =====================
+
 
         if(editandoId){
 
 
 
-            await fetch(
+            const resposta = await fetch(
 
                 `${API}/transactions/${editandoId}`,
 
@@ -681,15 +756,20 @@ async(e)=>{
                     method:"PUT",
 
 
+
                     headers:{
 
 
                         "Content-Type":
+                        "application/json",
 
-                        "application/json"
+
+                        "Authorization":
+                        `Bearer ${getToken()}`
 
 
                     },
+
 
 
                     body:
@@ -704,13 +784,19 @@ async(e)=>{
 
 
 
+            console.log(
+                await resposta.json()
+            );
+
+
+
 
             editandoId = null;
 
 
 
-            document.getElementById("botaoSalvar")
-            .innerHTML =
+
+            document.getElementById("botaoSalvar").innerHTML =
 
             "Adicionar";
 
@@ -720,13 +806,18 @@ async(e)=>{
 
 
 
+
+
+        // =====================
         // NOVA TRANSAÇÃO
+        // =====================
+
 
         else{
 
 
 
-            await fetch(
+            const resposta = await fetch(
 
                 `${API}/transactions`,
 
@@ -736,15 +827,20 @@ async(e)=>{
                     method:"POST",
 
 
+
                     headers:{
 
 
                         "Content-Type":
+                        "application/json",
 
-                        "application/json"
+
+                        "Authorization":
+                        `Bearer ${getToken()}`
 
 
                     },
+
 
 
                     body:
@@ -755,6 +851,12 @@ async(e)=>{
                 }
 
 
+            );
+
+
+
+            console.log(
+                await resposta.json()
             );
 
 
@@ -767,7 +869,9 @@ async(e)=>{
         formulario.reset();
 
 
+
         carregarDados();
+
 
 
 
@@ -777,6 +881,7 @@ async(e)=>{
         console.log(
 
             "Erro ao salvar:",
+
             error
 
         );
@@ -787,6 +892,96 @@ async(e)=>{
 
 
 });
+// ===============================
+// VERIFICAR LOGIN
+// ===============================
+
+if(!localStorage.getItem("token")){
+
+    window.location.href = "login.html";
+
+}
+
+
+
+
+
+// ===============================
+// MOSTRAR USUÁRIO LOGADO
+// ===============================
+
+
+const usuarioLogado =
+
+JSON.parse(
+
+    localStorage.getItem("usuario")
+
+);
+
+
+
+if(usuarioLogado){
+
+
+    const elementoUsuario =
+
+    document.getElementById("nomeUsuario");
+
+
+    if(elementoUsuario){
+
+
+        elementoUsuario.innerHTML =
+
+        `Olá, ${usuarioLogado.name}`;
+
+
+    }
+
+
+}
+
+
+
+
+
+// ===============================
+// LOGOUT
+// ===============================
+
+
+const botaoSair =
+
+document.getElementById("botaoSair");
+
+
+
+if(botaoSair){
+
+
+    botaoSair.onclick = ()=>{
+
+
+        localStorage.removeItem("token");
+
+
+        localStorage.removeItem("usuario");
+
+
+        window.location.href = "login.html";
+
+
+    };
+
+
+}
+
+
+
+
+
+
 // ===============================
 // TEMA ESCURO
 // ===============================
@@ -802,7 +997,9 @@ document.getElementById("temaBtn");
 
 function atualizarGraficoTema(){
 
+
     carregarDados();
+
 
 }
 
@@ -810,8 +1007,8 @@ function atualizarGraficoTema(){
 
 
 
-
 if(temaBtn){
+
 
 
     temaBtn.onclick = function(){
@@ -829,7 +1026,6 @@ if(temaBtn){
         ){
 
 
-
             temaBtn.innerHTML = "☀️";
 
 
@@ -840,9 +1036,7 @@ if(temaBtn){
             );
 
 
-
         }else{
-
 
 
             temaBtn.innerHTML = "🌙";
@@ -859,7 +1053,6 @@ if(temaBtn){
 
 
 
-
         atualizarGraficoTema();
 
 
@@ -873,9 +1066,12 @@ if(temaBtn){
 
 
 
+
+
 // ===============================
 // MANTER TEMA SALVO
 // ===============================
+
 
 
 if(
@@ -905,8 +1101,9 @@ if(
 
 
 
+
 // ===============================
-// INICIAR
+// INICIAR SISTEMA
 // ===============================
 
 

@@ -7,7 +7,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Cadastro - Finance Dashboard</title>
+    <title>Login - Finance Dashboard</title>
 
     <link rel="stylesheet" href="login.css">
 
@@ -24,37 +24,20 @@
 
         <h1>💰 Finance</h1>
 
-        <p>Crie sua conta e organize sua vida financeira</p>
+        <p>Controle suas finanças de forma simples</p>
 
     </div>
 
 
 
-
-    <form id="cadastroForm">
-
-
-        <div class="input-box">
-
-            <label>Nome</label>
-
-            <input
-            id="name"
-            type="text"
-            placeholder="Digite seu nome"
-            required
-            >
-
-        </div>
-
-
+    <form id="loginForm">
 
 
         <div class="input-box">
 
             <label>Email</label>
 
-            <input
+            <input 
             id="email"
             type="email"
             placeholder="Digite seu email"
@@ -70,33 +53,21 @@
 
             <label>Senha</label>
 
-            <input
+            <input 
             id="password"
             type="password"
-            placeholder="Crie uma senha"
+            placeholder="Digite sua senha"
             required
             >
 
         </div>
-        <div class="input-box">
-
-<label>Confirmar senha</label>
-
-<input
-id="confirmPassword"
-type="password"
-placeholder="Confirme sua senha"
-required
->
-
-</div>
 
 
 
 
         <button type="submit">
 
-            Criar conta
+            Entrar
 
         </button>
 
@@ -105,27 +76,18 @@ required
 
 
 
-
     <p id="mensagem"></p>
-
 
 
 
     <div class="cadastro-link">
 
-
         <p>
-
-            Já possui uma conta?
-
-            <a href="login.html">
-
-                Entrar
-
+            Ainda não possui conta?
+            <a href="cadastro.html">
+                Criar conta
             </a>
-
         </p>
-
 
     </div>
 
@@ -135,8 +97,7 @@ required
 
 
 
-
-<script src="cadastro.js"></script>
+<script src="login.js"></script>
 
 
 </body>
