@@ -11,40 +11,48 @@ const Transaction = require("../models/Transaction");
 // BUSCAR TRANSAÇÕES DO USUÁRIO
 // ===============================
 
-router.get("/", auth, async(req,res)=>{
+router.post("/", auth, async(req,res)=>{
+
+    console.log("===== POST TRANSAÇÃO =====");
+    console.log("HEADERS:", req.headers.authorization);
+    console.log("REQ.USER:", req.user);
+
 
     try{
 
 
-        const transactions = await Transaction.findAll({
+        const transaction = await Transaction.create({
 
-            where:{
-                userId:req.user.id
-            }
+            description:req.body.description,
+
+            amount:req.body.amount,
+
+            type:req.body.type,
+
+            date:req.body.date,
+
+            category:req.body.category,
+
+            userId:req.user.id
 
         });
 
 
-        res.json(transactions);
-
+        res.json(transaction);
 
 
     }catch(error){
-
 
         console.log(error);
 
 
         res.status(500).json({
-            erro:"Erro ao buscar transações"
+            erro:"Erro ao criar transação"
         });
-
 
     }
 
-
 });
-
 
 
 
