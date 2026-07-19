@@ -25,13 +25,19 @@ app.use(express.json());
 const path = require("path");
 
 
+// ===============================
 // SERVIR FRONTEND
+// ===============================
+
 app.use(express.static(
     path.join(__dirname, "../../frontend")
 ));
 
 
-// TESTE DA PÁGINA INICIAL
+// ===============================
+// PÁGINA INICIAL
+// ===============================
+
 app.get("/", (req,res)=>{
 
     res.sendFile(
@@ -42,7 +48,6 @@ app.get("/", (req,res)=>{
     );
 
 });
-
 
 
 // Rotas API
