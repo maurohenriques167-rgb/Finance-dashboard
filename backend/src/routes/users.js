@@ -7,6 +7,9 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
 
+router.get("/", (req,res)=>{
+    res.send("Rota de usuários funcionando");
+});
 // CADASTRAR USUÁRIO
 router.post("/register", async (req, res) => {
 
@@ -159,4 +162,4 @@ router.post("/login", async(req,res)=>{
 
 
 
-module.exports = router;
+module.exports = router;    
