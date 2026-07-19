@@ -117,19 +117,19 @@ router.post("/login", async(req,res)=>{
 
 
 
-        const token = jwt.sign(
+    const token = jwt.sign(
 
-            {
-                id: usuario.id
-            },
+    {
+        id: usuario.id
+    },
 
-            process.env.JWT_SECRET,
+    process.env.JWT_SECRET,
 
-            {
-                expiresIn:"7d"
-            }
+    {
+        expiresIn:"7d"
+    }
 
-        );
+);
 
 
 
