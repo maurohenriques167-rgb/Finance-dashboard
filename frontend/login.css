@@ -8,12 +8,13 @@
     box-sizing:border-box;
     font-family:"Segoe UI",Arial,sans-serif;
 }
-
 body{
 
     min-height:100vh;
 
     display:flex;
+
+    flex-direction:column;
 
     justify-content:center;
 
@@ -645,5 +646,34 @@ a{
         gap:0;
 
     }
+
+}
+footer{
+
+    margin-top:25px;
+
+    color:#cbd5e1;
+
+    font-size:14px;
+
+    text-align:center;
+
+}
+
+
+footer a{
+
+    color:#22c55e;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+}
+
+
+footer a:hover{
+
+    text-decoration:underline;
 
 }
