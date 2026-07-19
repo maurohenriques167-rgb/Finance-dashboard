@@ -1,9 +1,12 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 
 const sequelize = require("./config/database");
 
 require("./models/User");
+require("./models/Transaction");
+
 
 const transactionRoutes = require("./routes/transactions");
 const userRoutes = require("./routes/users");
@@ -20,26 +23,45 @@ app.use(cors());
 app.use(express.json());
 
 
-// Teste
-app.get("/", (req, res) => {
-    res.send("Servidor funcionando!");
+// ===============================
+// SERVIR FRONTEND
+// ===============================
+
+app.use(express.static(path.join(__dirname, "../../frontend")));
+
+
+
+// Página inicial
+app.get("/", (req,res)=>{
+
+    res.sendFile(
+        path.join(__dirname,"../../frontend/index.html")
+    );
+
 });
 
 
-// Rotas
+
+// Rotas API
+
 app.use("/transactions", transactionRoutes);
 
 app.use("/users", userRoutes);
 
 
+
+
 // Banco
+
 sequelize.authenticate()
-.then(() => {
+
+.then(()=>{
 
     console.log("Banco conectado com sucesso!");
 
 })
-.catch((error) => {
+
+.catch((error)=>{
 
     console.log("Erro no banco:", error);
 
@@ -47,26 +69,35 @@ sequelize.authenticate()
 
 
 
+
+
 sequelize.sync()
-.then(() => {
+
+.then(()=>{
 
     console.log("Banco sincronizado!");
 
 })
-.catch((err) => {
 
-    console.log("Erro ao sincronizar:", err);
+.catch((err)=>{
+
+    console.log("Erro ao sincronizar:",err);
 
 });
 
 
 
+
+
 // Porta Render
+
 const PORT = process.env.PORT || 3000;
 
 
-app.listen(PORT, () => {
+app.listen(PORT,()=>{
 
-    console.log(`Servidor rodando na porta ${PORT}`);
+    console.log(
+        `Servidor rodando na porta ${PORT}`
+    );
 
 });
