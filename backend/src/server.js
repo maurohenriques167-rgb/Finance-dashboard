@@ -2,9 +2,11 @@ const express = require("express");
 const cors = require("cors");
 
 const sequelize = require("./config/database");
-require("./models/User");
-const transactionRoutes = require("./routes/transactions");
 
+require("./models/User");
+
+const transactionRoutes = require("./routes/transactions");
+const userRoutes = require("./routes/users");
 
 
 const app = express();
@@ -27,24 +29,36 @@ app.get("/", (req, res) => {
 // Rotas
 app.use("/transactions", transactionRoutes);
 
+app.use("/users", userRoutes);
+
 
 // Banco
 sequelize.authenticate()
 .then(() => {
+
     console.log("Banco conectado com sucesso!");
+
 })
 .catch((error) => {
+
     console.log("Erro no banco:", error);
+
 });
+
 
 
 sequelize.sync()
 .then(() => {
-    console.log("Banco sincronizado");
+
+    console.log("Banco sincronizado!");
+
 })
 .catch((err) => {
+
     console.log("Erro ao sincronizar:", err);
+
 });
+
 
 
 // Porta Render
@@ -52,5 +66,7 @@ const PORT = process.env.PORT || 3000;
 
 
 app.listen(PORT, () => {
+
     console.log(`Servidor rodando na porta ${PORT}`);
+
 });
