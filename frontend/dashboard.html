@@ -4,65 +4,160 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Finance Dashboard</title>
-  
+
     <link rel="stylesheet" href="style.css">
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-</head>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
+</head>
 
 <body>
 
+<header class="topbar">
 
-<header>
+    <div class="logo-area">
 
-    <h1>💰 Finance Dashboard</h1>
+        <div class="logo-icon">
+            💰
+        </div>
 
-    <button id="temaBtn" class="tema-btn">
-        🌙
-    </button>
+        <div>
 
-    <p>
-        Controle suas receitas e despesas
-    </p>
+            <h1>
+                Finance Dashboard
+            </h1>
+
+            <p>
+                Controle suas finanças de forma simples e inteligente.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="usuario-area">
+
+        <div class="usuario-card">
+
+            <div class="avatar">
+
+                <i class="fa-solid fa-user"></i>
+
+            </div>
+
+            <div>
+
+                <span id="nomeUsuario">
+
+                    Usuário
+
+                </span>
+
+                <small>
+
+                    Bem-vindo de volta
+
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <button
+            id="temaBtn"
+            class="tema-btn">
+
+            🌙
+
+        </button>
+
+
+        <button
+            id="logoutBtn"
+            class="logout-btn">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            Sair
+
+        </button>
+
+    </div>
 
 </header>
+
 
 
 <main>
 
 
+
 <section class="resumo">
+
 
 
 <div class="card saldo">
 
-<h3>
-💰 Saldo atual
-</h3>
+    <div class="icone-card">
 
-<strong id="saldo">
-R$ 0,00
-</strong>
+        💰
+
+    </div>
+
+    <div>
+
+        <h3>
+
+            Saldo Atual
+
+        </h3>
+
+        <strong id="saldo">
+
+            R$ 0,00
+
+        </strong>
+
+    </div>
 
 </div>
 
 
 
 
+
 <div class="card receita-card">
 
-<h3>
-📈 Receitas
-</h3>
+    <div class="icone-card">
 
-<strong id="receitas">
-R$ 0,00
-</strong>
+        📈
+
+    </div>
+
+    <div>
+
+        <h3>
+
+            Receitas
+
+        </h3>
+
+        <strong id="receitas">
+
+            R$ 0,00
+
+        </strong>
+
+    </div>
 
 </div>
 
@@ -72,238 +167,334 @@ R$ 0,00
 
 <div class="card despesa-card">
 
-<h3>
-📉 Despesas
-</h3>
+    <div class="icone-card">
 
-<strong id="despesas">
-R$ 0,00
-</strong>
+        📉
+
+    </div>
+
+    <div>
+
+        <h3>
+
+            Despesas
+
+        </h3>
+
+        <strong id="despesas">
+
+            R$ 0,00
+
+        </strong>
+
+    </div>
 
 </div>
+
 
 
 </section>
 
 
+
+<div class="dashboard-grid">
 
 
 
 <section class="grafico">
 
+    <div class="titulo-card">
 
-<h2>
-Resumo financeiro
-</h2>
+        <h2>
 
+            <i class="fa-solid fa-chart-pie"></i>
 
-<canvas id="graficoFinanceiro"></canvas>
+            Resumo Financeiro
 
+        </h2>
+
+        <span>
+
+            Últimos registros
+
+        </span>
+
+    </div>
+
+    <canvas id="graficoFinanceiro"></canvas>
 
 </section>
-
-
-
-
-
-
 <section class="formulario">
 
+    <div class="titulo-card">
 
-<h2>
-Adicionar transação
-</h2>
+        <h2>
 
+            <i class="fa-solid fa-circle-plus"></i>
 
+            Nova Transação
 
-<form id="formTransacao">
+        </h2>
 
+        <span>
 
+            Adicione uma receita ou despesa
 
-<input 
-type="text"
-id="descricao"
-placeholder="Descrição"
-required>
+        </span>
 
+    </div>
 
 
 
-<input
-type="number"
-id="valor"
-placeholder="Valor"
-step="0.01"
-required>
+    <form id="formTransacao">
 
+        <div class="campo">
 
+            <label>
 
+                Descrição
 
+            </label>
 
-<select id="tipo">
+            <input
+                type="text"
+                id="descricao"
+                placeholder="Ex: Salário, Mercado..."
+                required>
 
+        </div>
 
-<option value="receita">
-📈 Receita
-</option>
 
 
-<option value="despesa">
-📉 Despesa
-</option>
+        <div class="campo">
 
+            <label>
 
-</select>
+                Valor
 
+            </label>
 
+            <input
+                type="number"
+                id="valor"
+                placeholder="0,00"
+                step="0.01"
+                required>
 
+        </div>
 
 
 
-<!-- NOVO CAMPO DE CATEGORIA -->
+        <div class="campo">
 
-<select id="categoria">
+            <label>
 
+                Tipo
 
-<option value="Alimentação">
-🛒 Alimentação
-</option>
+            </label>
 
+            <select id="tipo">
 
-<option value="Moradia">
-🏠 Moradia
-</option>
+                <option value="receita">
+                    📈 Receita
+                </option>
 
+                <option value="despesa">
+                    📉 Despesa
+                </option>
 
-<option value="Transporte">
-🚗 Transporte
-</option>
+            </select>
 
+        </div>
 
-<option value="Lazer">
-🎮 Lazer
-</option>
 
 
-<option value="Trabalho">
-💼 Trabalho
-</option>
+        <div class="campo">
 
+            <label>
 
-<option value="Estudos">
-📚 Estudos
-</option>
+                Categoria
 
+            </label>
 
-<option value="Contas">
-💡 Contas
-</option>
+            <select id="categoria">
 
+                <option value="Alimentação">
+                    🛒 Alimentação
+                </option>
 
-<option value="Outros">
-📦 Outros
-</option>
+                <option value="Moradia">
+                    🏠 Moradia
+                </option>
 
+                <option value="Transporte">
+                    🚗 Transporte
+                </option>
 
-</select>
+                <option value="Lazer">
+                    🎮 Lazer
+                </option>
 
+                <option value="Trabalho">
+                    💼 Trabalho
+                </option>
 
+                <option value="Estudos">
+                    📚 Estudos
+                </option>
 
+                <option value="Contas">
+                    💡 Contas
+                </option>
 
+                <option value="Outros">
+                    📦 Outros
+                </option>
 
-<input
-type="date"
-id="data"
-required>
+            </select>
 
+        </div>
 
 
 
+        <div class="campo">
 
+            <label>
 
-<button 
-type="submit"
-id="botaoSalvar">
+                Data
 
-Adicionar
+            </label>
 
-</button>
+            <input
+                type="date"
+                id="data"
+                required>
 
+        </div>
 
 
-</form>
 
+        <button
+            type="submit"
+            id="botaoSalvar">
 
+            <i class="fa-solid fa-floppy-disk"></i>
+
+            Adicionar Transação
+
+        </button>
+
+    </form>
 
 </section>
-
-
-
-
-
-
-
-
-<section class="lista">
-
-
-<h2>
-Últimas transações
-</h2>
-
-
-
-
-
-<div class="filtros">
-
-
-<input
-type="text"
-id="pesquisa"
-placeholder="🔎 Pesquisar transação..."
->
-
-
-
-
-<select id="filtroTipo">
-
-
-<option value="todos">
-Todas
-</option>
-
-
-<option value="receita">
-Receitas
-</option>
-
-
-<option value="despesa">
-Despesas
-</option>
-
-
-</select>
-
-
 
 </div>
 
 
 
+<section class="lista">
+
+    <div class="titulo-card">
+
+        <h2>
+
+            <i class="fa-solid fa-list"></i>
+
+            Últimas Transações
+
+        </h2>
+
+        <span>
+
+            Histórico financeiro
+
+        </span>
+
+    </div>
 
 
 
+    <div class="filtros">
 
-<ul id="transacoes"></ul>
+        <input
+            type="text"
+            id="pesquisa"
+            placeholder="🔎 Pesquisar transação...">
+
+        <select id="filtroTipo">
+
+            <option value="todos">
+
+                Todas
+
+            </option>
+
+            <option value="receita">
+
+                Receitas
+
+            </option>
+
+            <option value="despesa">
+
+                Despesas
+
+            </option>
+
+        </select>
+
+    </div>
 
 
 
+    <ul id="transacoes"></ul>
 
 </section>
+<!-- =========================================================
+     MODAL DE EXCLUSÃO
+========================================================= -->
 
+<div id="modalExcluir" class="modal">
+
+    <div class="modal-conteudo">
+
+        <div class="modal-icone">
+
+            <i class="fa-solid fa-triangle-exclamation"></i>
+
+        </div>
+
+        <h3>
+
+            Excluir transação?
+
+        </h3>
+
+        <p>
+
+            Essa ação não poderá ser desfeita.
+
+        </p>
+
+        <div class="modal-botoes">
+
+            <button id="cancelarExcluir">
+
+                Cancelar
+
+            </button>
+
+            <button id="confirmarExcluir">
+
+                Excluir
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
 
 
 
@@ -311,68 +502,7 @@ Despesas
 
 
 
-
-
-
-
-<!-- MODAL EXCLUSÃO -->
-
-
-<div id="modalExcluir" class="modal">
-
-
-<div class="modal-conteudo">
-
-
-<h3>
-Excluir transação?
-</h3>
-
-
-
-<p>
-Essa ação não pode ser desfeita.
-</p>
-
-
-
-
-<div class="modal-botoes">
-
-
-<button id="cancelarExcluir">
-
-Cancelar
-
-</button>
-
-
-
-
-<button id="confirmarExcluir">
-
-Excluir
-
-</button>
-
-
-
-</div>
-
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
 <script src="script.js"></script>
-
 
 </body>
 
