@@ -14,41 +14,60 @@ const Transaction = require("../models/Transaction");
 router.post("/", auth, async(req,res)=>{
 
     console.log("===== POST TRANSAÇÃO =====");
+    console.log("HEADERS:", req.headers.authorization);
     console.log("REQ.USER:", req.user);
     console.log("BODY:", req.body);
 
 
-    const dados = {
-
-        description:req.body.description,
-        amount:req.body.amount,
-        type:req.body.type,
-        date:req.body.date,
-        category:req.body.category,
-        userId:req.user.id
-
-    };
-
-
-    console.log("DADOS PARA O BANCO:", dados);
-
-
     try{
+
+
+        const dados = {
+
+            description: req.body.description,
+
+            amount: req.body.amount,
+
+            type: req.body.type,
+
+            date: req.body.date,
+
+            category: req.body.category,
+
+            userId: req.user.id
+
+        };
+
+
+        console.log("DADOS PARA O BANCO:", dados);
+
+
 
         const transaction = await Transaction.create(dados);
 
+
+
         console.log("CRIADA:", transaction);
+
+
 
         res.json(transaction);
 
 
+
     }catch(error){
+
 
         console.log(error);
 
+
+
         res.status(500).json({
+
             erro:"Erro ao criar transação"
+
         });
+
 
     }
 
