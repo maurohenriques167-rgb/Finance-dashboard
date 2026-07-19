@@ -1,0 +1,1165 @@
+/* ==========================================================
+   RESET
+========================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Arial,sans-serif;
+}
+
+:root{
+
+    --verde:#16a34a;
+    --verde2:#22c55e;
+    --verdeEscuro:#15803d;
+
+    --vermelho:#ef4444;
+    --vermelhoEscuro:#dc2626;
+
+    --cinza:#64748b;
+    --cinzaClaro:#f8fafc;
+
+    --texto:#1e293b;
+
+    --card:#ffffff;
+
+    --sombra:
+    0 15px 35px rgba(0,0,0,.08);
+
+}
+
+body.dark{
+
+    --card:#1f2937;
+    --cinzaClaro:#111827;
+    --texto:#f8fafc;
+    --cinza:#cbd5e1;
+
+}
+
+body{
+
+    background:var(--cinzaClaro);
+    color:var(--texto);
+
+    min-height:100vh;
+
+    transition:.35s;
+
+}
+
+
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+header{
+
+    width:100%;
+
+    background:linear-gradient(
+        135deg,
+        var(--verde),
+        var(--verde2)
+    );
+
+    color:white;
+
+    padding:30px 40px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    box-shadow:var(--sombra);
+
+}
+
+header h1{
+
+    font-size:34px;
+    font-weight:bold;
+
+}
+
+header p{
+
+    margin-top:10px;
+    opacity:.9;
+
+}
+
+.tema-btn{
+
+    width:55px;
+    height:55px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:white;
+
+    color:#111;
+
+    cursor:pointer;
+
+    font-size:22px;
+
+    transition:.3s;
+
+}
+
+.tema-btn:hover{
+
+    transform:rotate(20deg) scale(1.1);
+
+}
+
+
+
+/* ==========================================================
+   MAIN
+========================================================== */
+
+main{
+
+    max-width:1400px;
+
+    margin:auto;
+
+    padding:35px;
+
+}
+
+
+
+/* ==========================================================
+   CARDS
+========================================================== */
+
+.resumo{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(260px,1fr));
+
+    gap:25px;
+
+    margin-bottom:35px;
+
+}
+
+.card{
+
+    background:var(--card);
+
+    border-radius:20px;
+
+    padding:28px;
+
+    box-shadow:var(--sombra);
+
+    transition:.35s;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:8px;
+    height:100%;
+
+    background:var(--verde);
+
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.card h3{
+
+    font-size:18px;
+
+    margin-bottom:18px;
+
+}
+
+.card strong{
+
+    font-size:36px;
+
+    font-weight:bold;
+
+}
+
+.receita-card::before{
+
+    background:#22c55e;
+
+}
+
+.despesa-card::before{
+
+    background:#ef4444;
+
+}
+
+.saldo::before{
+
+    background:#0ea5e9;
+
+}
+
+
+
+/* ==========================================================
+   GRID CENTRAL
+========================================================== */
+
+.grafico,
+.formulario{
+
+    background:var(--card);
+
+    border-radius:20px;
+
+    box-shadow:var(--sombra);
+
+    padding:30px;
+
+}
+
+.grafico{
+
+    margin-bottom:30px;
+
+}
+
+.grafico h2{
+
+    margin-bottom:20px;
+
+    font-size:24px;
+
+}
+
+canvas{
+
+    max-height:380px;
+
+}
+
+
+
+/* ==========================================================
+   ANIMAÇÕES
+========================================================== */
+
+.card,
+.grafico,
+.formulario,
+.lista{
+
+    animation:fade .5s ease;
+
+}
+
+@keyframes fade{
+
+    from{
+
+        opacity:0;
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+/* ==========================================================
+   TÍTULOS
+========================================================== */
+
+section h2{
+
+    font-size:24px;
+
+    margin-bottom:20px;
+
+}
+/* ==========================================================
+   FORMULÁRIO
+========================================================== */
+
+.formulario{
+
+    margin-bottom:30px;
+
+}
+
+#formTransacao{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+
+    gap:18px;
+
+}
+
+#formTransacao input,
+#formTransacao select{
+
+    padding:15px;
+
+    border:1px solid #dbe4ee;
+
+    border-radius:12px;
+
+    background:#fff;
+
+    color:#1e293b;
+
+    font-size:15px;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+body.dark #formTransacao input,
+body.dark #formTransacao select{
+
+    background:#374151;
+
+    color:white;
+
+    border:1px solid #4b5563;
+
+}
+
+#formTransacao input:focus,
+#formTransacao select:focus{
+
+    border-color:var(--verde);
+
+    box-shadow:
+    0 0 0 4px rgba(22,163,74,.18);
+
+}
+
+#botaoSalvar{
+
+    border:none;
+
+    border-radius:12px;
+
+    background:linear-gradient(
+        135deg,
+        var(--verde),
+        var(--verde2)
+    );
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    padding:15px;
+
+}
+
+#botaoSalvar:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 12px 30px rgba(22,163,74,.30);
+
+}
+
+
+
+/* ==========================================================
+   LISTA
+========================================================== */
+
+.lista{
+
+    background:var(--card);
+
+    border-radius:20px;
+
+    box-shadow:var(--sombra);
+
+    padding:30px;
+
+}
+
+
+
+/* ==========================================================
+   FILTROS
+========================================================== */
+
+.filtros{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-bottom:25px;
+
+    flex-wrap:wrap;
+
+}
+
+.filtros input{
+
+    flex:1;
+
+    min-width:250px;
+
+}
+
+.filtros input,
+.filtros select{
+
+    padding:14px;
+
+    border-radius:12px;
+
+    border:1px solid #dbe4ee;
+
+    outline:none;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+body.dark .filtros input,
+body.dark .filtros select{
+
+    background:#374151;
+
+    color:white;
+
+    border:1px solid #4b5563;
+
+}
+
+.filtros input:focus,
+.filtros select:focus{
+
+    border-color:var(--verde);
+
+}
+
+
+
+/* ==========================================================
+   TRANSAÇÕES
+========================================================== */
+
+#transacoes{
+
+    list-style:none;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+
+
+/* Cada item */
+
+#transacoes li{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:#f8fafc;
+
+    border-radius:15px;
+
+    padding:18px 22px;
+
+    transition:.3s;
+
+    border-left:6px solid transparent;
+
+}
+
+body.dark #transacoes li{
+
+    background:#374151;
+
+}
+
+#transacoes li:hover{
+
+    transform:translateX(6px);
+
+}
+
+
+
+/* Receita */
+
+#transacoes li.receita{
+
+    border-left-color:#22c55e;
+
+}
+
+
+
+/* Despesa */
+
+#transacoes li.despesa{
+
+    border-left-color:#ef4444;
+
+}
+
+
+
+/* Conteúdo esquerdo */
+
+.transacao-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+
+}
+
+.transacao-info strong{
+
+    font-size:18px;
+
+}
+
+.transacao-info small{
+
+    color:var(--cinza);
+
+}
+
+
+
+/* Valor */
+
+.valor{
+
+    font-size:20px;
+
+    font-weight:bold;
+
+}
+
+.valor.receita{
+
+    color:#22c55e;
+
+}
+
+.valor.despesa{
+
+    color:#ef4444;
+
+}
+
+
+
+/* ==========================================================
+   BOTÕES DE AÇÃO
+========================================================== */
+
+.acoes{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-left:20px;
+
+}
+
+.acoes button{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    transition:.25s;
+
+}
+
+.editar{
+
+    background:#facc15;
+
+    color:#111827;
+
+}
+
+.editar:hover{
+
+    transform:scale(1.12);
+
+    background:#eab308;
+
+}
+
+.excluir{
+
+    background:#ef4444;
+
+    color:white;
+
+}
+
+.excluir:hover{
+
+    transform:scale(1.12);
+
+    background:#dc2626;
+
+}
+
+
+
+/* ==========================================================
+   SCROLL
+========================================================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#e5e7eb;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:var(--verde);
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:var(--verdeEscuro);
+
+}
+/* ==========================================================
+   MODAL
+========================================================== */
+
+.modal{
+
+    position:fixed;
+
+    inset:0;
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:rgba(0,0,0,.45);
+
+    backdrop-filter:blur(5px);
+
+    z-index:999;
+
+}
+
+.modal-conteudo{
+
+    width:380px;
+
+    max-width:90%;
+
+    background:var(--card);
+
+    color:var(--texto);
+
+    border-radius:20px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.30);
+
+    animation:modal .30s ease;
+
+}
+
+@keyframes modal{
+
+    from{
+
+        transform:scale(.85);
+
+        opacity:0;
+
+    }
+
+    to{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+}
+
+.modal h3{
+
+    font-size:24px;
+
+    margin-bottom:12px;
+
+}
+
+.modal p{
+
+    color:var(--cinza);
+
+    margin-bottom:25px;
+
+}
+
+.modal-botoes{
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+.modal-botoes button{
+
+    flex:1;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+#cancelarExcluir{
+
+    background:#e5e7eb;
+
+    color:#111827;
+
+}
+
+#cancelarExcluir:hover{
+
+    background:#d1d5db;
+
+}
+
+#confirmarExcluir{
+
+    background:#ef4444;
+
+    color:white;
+
+}
+
+#confirmarExcluir:hover{
+
+    background:#dc2626;
+
+}
+
+
+
+/* ==========================================================
+   MODO ESCURO
+========================================================== */
+
+body.dark{
+
+    background:#111827;
+
+}
+
+body.dark header{
+
+    background:linear-gradient(
+        135deg,
+        #166534,
+        #15803d
+    );
+
+}
+
+body.dark .card,
+body.dark .grafico,
+body.dark .formulario,
+body.dark .lista,
+body.dark .modal-conteudo{
+
+    background:#1f2937;
+
+    color:#f8fafc;
+
+}
+
+body.dark .card h3,
+body.dark h2,
+body.dark h3{
+
+    color:#ffffff;
+
+}
+
+body.dark .tema-btn{
+
+    background:#374151;
+
+    color:#f8fafc;
+
+}
+
+body.dark #transacoes li{
+
+    background:#374151;
+
+}
+
+body.dark #cancelarExcluir{
+
+    background:#374151;
+
+    color:white;
+
+}
+
+
+
+/* ==========================================================
+   BOTÕES
+========================================================== */
+
+button{
+
+    transition:
+    transform .25s,
+    box-shadow .25s,
+    opacity .25s;
+
+}
+
+button:hover{
+
+    opacity:.95;
+
+}
+
+button:active{
+
+    transform:scale(.96);
+
+}
+
+
+
+/* ==========================================================
+   CARDS
+========================================================== */
+
+.card strong{
+
+    display:block;
+
+    margin-top:8px;
+
+}
+
+.card:hover{
+
+    box-shadow:
+
+    0 18px 40px rgba(0,0,0,.12);
+
+}
+
+
+
+/* ==========================================================
+   INPUTS
+========================================================== */
+
+input::placeholder{
+
+    color:#94a3b8;
+
+}
+
+body.dark input::placeholder{
+
+    color:#cbd5e1;
+
+}
+
+
+
+/* ==========================================================
+   LINKS
+========================================================== */
+
+a{
+
+    text-decoration:none;
+
+    color:inherit;
+
+}
+
+
+
+/* ==========================================================
+   RESPONSIVIDADE
+========================================================== */
+
+@media(max-width:1100px){
+
+    main{
+
+        padding:25px;
+
+    }
+
+}
+
+@media(max-width:900px){
+
+    header{
+
+        flex-direction:column;
+
+        gap:15px;
+
+        text-align:center;
+
+    }
+
+}
+
+@media(max-width:700px){
+
+    .resumo{
+
+        grid-template-columns:1fr;
+
+    }
+
+    #formTransacao{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .filtros{
+
+        flex-direction:column;
+
+    }
+
+    .filtros input{
+
+        min-width:100%;
+
+    }
+
+    #transacoes li{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:15px;
+
+    }
+
+    .acoes{
+
+        margin-left:0;
+
+    }
+
+}
+
+@media(max-width:500px){
+
+    header{
+
+        padding:20px;
+
+    }
+
+    header h1{
+
+        font-size:28px;
+
+    }
+
+    main{
+
+        padding:15px;
+
+    }
+
+    .card{
+
+        padding:20px;
+
+    }
+
+    .card strong{
+
+        font-size:30px;
+
+    }
+
+    .grafico,
+    .formulario,
+    .lista{
+
+        padding:20px;
+
+    }
+
+    .modal-conteudo{
+
+        padding:20px;
+
+    }
+
+}
+
+
+
+/* ==========================================================
+   ANIMAÇÃO SUAVE DAS TRANSAÇÕES
+========================================================== */
+
+#transacoes li{
+
+    animation:aparecer .35s ease;
+
+}
+
+@keyframes aparecer{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(15px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+/* ==========================================================
+   SELEÇÃO DE TEXTO
+========================================================== */
+
+::selection{
+
+    background:#22c55e;
+
+    color:white;
+
+}

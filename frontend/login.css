@@ -1,6 +1,6 @@
-/* ==========================================================
+/* =====================================================
    RESET
-========================================================== */
+===================================================== */
 
 *{
     margin:0;
@@ -9,289 +9,59 @@
     font-family:"Segoe UI",Arial,sans-serif;
 }
 
-:root{
-
-    --verde:#16a34a;
-    --verde2:#22c55e;
-    --verdeEscuro:#15803d;
-
-    --vermelho:#ef4444;
-    --vermelhoEscuro:#dc2626;
-
-    --cinza:#64748b;
-    --cinzaClaro:#f8fafc;
-
-    --texto:#1e293b;
-
-    --card:#ffffff;
-
-    --sombra:
-    0 15px 35px rgba(0,0,0,.08);
-
-}
-
-body.dark{
-
-    --card:#1f2937;
-    --cinzaClaro:#111827;
-    --texto:#f8fafc;
-    --cinza:#cbd5e1;
-
-}
-
 body{
-
-    background:var(--cinzaClaro);
-    color:var(--texto);
 
     min-height:100vh;
 
-    transition:.35s;
-
-}
-
-
-
-/* ==========================================================
-   HEADER
-========================================================== */
-
-header{
-
-    width:100%;
-
-    background:linear-gradient(
-        135deg,
-        var(--verde),
-        var(--verde2)
-    );
-
-    color:white;
-
-    padding:30px 40px;
-
     display:flex;
 
-    justify-content:space-between;
+    justify-content:center;
 
     align-items:center;
 
-    flex-wrap:wrap;
+    background:
+    linear-gradient(
+        135deg,
+        #0f172a,
+        #1e293b
+    );
 
-    box-shadow:var(--sombra);
-
-}
-
-header h1{
-
-    font-size:34px;
-    font-weight:bold;
+    padding:20px;
 
 }
 
-header p{
+/* =====================================================
+   CONTAINER
+===================================================== */
 
-    margin-top:10px;
-    opacity:.9;
+.login-container{
 
-}
+    width:100%;
+    max-width:420px;
 
-.tema-btn{
+    background:#fff;
 
-    width:55px;
-    height:55px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:white;
-
-    color:#111;
-
-    cursor:pointer;
-
-    font-size:22px;
-
-    transition:.3s;
-
-}
-
-.tema-btn:hover{
-
-    transform:rotate(20deg) scale(1.1);
-
-}
-
-
-
-/* ==========================================================
-   MAIN
-========================================================== */
-
-main{
-
-    max-width:1400px;
-
-    margin:auto;
-
-    padding:35px;
-
-}
-
-
-
-/* ==========================================================
-   CARDS
-========================================================== */
-
-.resumo{
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(auto-fit,minmax(260px,1fr));
-
-    gap:25px;
-
-    margin-bottom:35px;
-
-}
-
-.card{
-
-    background:var(--card);
+    padding:40px;
 
     border-radius:20px;
 
-    padding:28px;
+    box-shadow:
+    0 20px 50px rgba(0,0,0,.35);
 
-    box-shadow:var(--sombra);
-
-    transition:.35s;
-
-    position:relative;
-
-    overflow:hidden;
+    animation:subir .5s ease;
 
 }
 
-.card::before{
+/* =====================================================
+   ANIMAÇÃO
+===================================================== */
 
-    content:"";
-
-    position:absolute;
-
-    top:0;
-    left:0;
-
-    width:8px;
-    height:100%;
-
-    background:var(--verde);
-
-}
-
-.card:hover{
-
-    transform:translateY(-8px);
-
-}
-
-.card h3{
-
-    font-size:18px;
-
-    margin-bottom:18px;
-
-}
-
-.card strong{
-
-    font-size:36px;
-
-    font-weight:bold;
-
-}
-
-.receita-card::before{
-
-    background:#22c55e;
-
-}
-
-.despesa-card::before{
-
-    background:#ef4444;
-
-}
-
-.saldo::before{
-
-    background:#0ea5e9;
-
-}
-
-
-
-/* ==========================================================
-   GRID CENTRAL
-========================================================== */
-
-.grafico,
-.formulario{
-
-    background:var(--card);
-
-    border-radius:20px;
-
-    box-shadow:var(--sombra);
-
-    padding:30px;
-
-}
-
-.grafico{
-
-    margin-bottom:30px;
-
-}
-
-.grafico h2{
-
-    margin-bottom:20px;
-
-    font-size:24px;
-
-}
-
-canvas{
-
-    max-height:380px;
-
-}
-
-
-
-/* ==========================================================
-   ANIMAÇÕES
-========================================================== */
-
-.card,
-.grafico,
-.formulario,
-.lista{
-
-    animation:fade .5s ease;
-
-}
-
-@keyframes fade{
+@keyframes subir{
 
     from{
 
         opacity:0;
-        transform:translateY(30px);
+        transform:translateY(40px);
 
     }
 
@@ -304,391 +74,229 @@ canvas{
 
 }
 
+/* =====================================================
+   LOGO
+===================================================== */
 
+.logo{
 
-/* ==========================================================
-   TÍTULOS
-========================================================== */
-
-section h2{
-
-    font-size:24px;
-
-    margin-bottom:20px;
-
-}
-/* ==========================================================
-   FORMULÁRIO
-========================================================== */
-
-.formulario{
+    text-align:center;
 
     margin-bottom:30px;
 
 }
 
-#formTransacao{
+.logo h1{
 
-    display:grid;
+    color:#16a34a;
 
-    grid-template-columns:
-    repeat(auto-fit,minmax(220px,1fr));
+    font-size:34px;
 
-    gap:18px;
+    margin-bottom:10px;
 
 }
 
-#formTransacao input,
-#formTransacao select{
+.logo p{
 
-    padding:15px;
-
-    border:1px solid #dbe4ee;
-
-    border-radius:12px;
-
-    background:#fff;
-
-    color:#1e293b;
+    color:#64748b;
 
     font-size:15px;
+
+    line-height:22px;
+
+}
+
+/* =====================================================
+   INPUTS
+===================================================== */
+
+.input-box{
+
+    margin-bottom:20px;
+
+}
+
+.input-box label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    color:#334155;
+
+    font-weight:600;
+
+    font-size:15px;
+
+}
+
+.input-box input{
+
+    width:100%;
+
+    padding:14px;
+
+    border-radius:10px;
+
+    border:1px solid #cbd5e1;
+
+    font-size:16px;
 
     outline:none;
 
     transition:.3s;
 
-}
-
-body.dark #formTransacao input,
-body.dark #formTransacao select{
-
-    background:#374151;
-
-    color:white;
-
-    border:1px solid #4b5563;
+    background:white;
 
 }
 
-#formTransacao input:focus,
-#formTransacao select:focus{
+.input-box input:focus{
 
-    border-color:var(--verde);
+    border-color:#16a34a;
 
     box-shadow:
     0 0 0 4px rgba(22,163,74,.18);
 
 }
+/* =====================================================
+   BOTÃO
+===================================================== */
 
-#botaoSalvar{
+button{
 
-    border:none;
-
-    border-radius:12px;
-
-    background:linear-gradient(
-        135deg,
-        var(--verde),
-        var(--verde2)
-    );
-
-    color:white;
-
-    font-size:16px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.3s;
+    width:100%;
 
     padding:15px;
-
-}
-
-#botaoSalvar:hover{
-
-    transform:translateY(-3px);
-
-    box-shadow:
-    0 12px 30px rgba(22,163,74,.30);
-
-}
-
-
-
-/* ==========================================================
-   LISTA
-========================================================== */
-
-.lista{
-
-    background:var(--card);
-
-    border-radius:20px;
-
-    box-shadow:var(--sombra);
-
-    padding:30px;
-
-}
-
-
-
-/* ==========================================================
-   FILTROS
-========================================================== */
-
-.filtros{
-
-    display:flex;
-
-    gap:15px;
-
-    margin-bottom:25px;
-
-    flex-wrap:wrap;
-
-}
-
-.filtros input{
-
-    flex:1;
-
-    min-width:250px;
-
-}
-
-.filtros input,
-.filtros select{
-
-    padding:14px;
-
-    border-radius:12px;
-
-    border:1px solid #dbe4ee;
-
-    outline:none;
-
-    font-size:15px;
-
-    transition:.3s;
-
-}
-
-body.dark .filtros input,
-body.dark .filtros select{
-
-    background:#374151;
-
-    color:white;
-
-    border:1px solid #4b5563;
-
-}
-
-.filtros input:focus,
-.filtros select:focus{
-
-    border-color:var(--verde);
-
-}
-
-
-
-/* ==========================================================
-   TRANSAÇÕES
-========================================================== */
-
-#transacoes{
-
-    list-style:none;
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:15px;
-
-}
-
-
-
-/* Cada item */
-
-#transacoes li{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    background:#f8fafc;
-
-    border-radius:15px;
-
-    padding:18px 22px;
-
-    transition:.3s;
-
-    border-left:6px solid transparent;
-
-}
-
-body.dark #transacoes li{
-
-    background:#374151;
-
-}
-
-#transacoes li:hover{
-
-    transform:translateX(6px);
-
-}
-
-
-
-/* Receita */
-
-#transacoes li.receita{
-
-    border-left-color:#22c55e;
-
-}
-
-
-
-/* Despesa */
-
-#transacoes li.despesa{
-
-    border-left-color:#ef4444;
-
-}
-
-
-
-/* Conteúdo esquerdo */
-
-.transacao-info{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:6px;
-
-}
-
-.transacao-info strong{
-
-    font-size:18px;
-
-}
-
-.transacao-info small{
-
-    color:var(--cinza);
-
-}
-
-
-
-/* Valor */
-
-.valor{
-
-    font-size:20px;
-
-    font-weight:bold;
-
-}
-
-.valor.receita{
-
-    color:#22c55e;
-
-}
-
-.valor.despesa{
-
-    color:#ef4444;
-
-}
-
-
-
-/* ==========================================================
-   BOTÕES DE AÇÃO
-========================================================== */
-
-.acoes{
-
-    display:flex;
-
-    gap:10px;
-
-    margin-left:20px;
-
-}
-
-.acoes button{
-
-    width:42px;
-
-    height:42px;
 
     border:none;
 
     border-radius:10px;
 
+    background:#16a34a;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
+
     cursor:pointer;
 
-    font-size:18px;
-
-    transition:.25s;
+    transition:.3s;
 
 }
 
-.editar{
+button:hover{
 
-    background:#facc15;
+    background:#15803d;
 
-    color:#111827;
+    transform:translateY(-2px);
 
-}
-
-.editar:hover{
-
-    transform:scale(1.12);
-
-    background:#eab308;
+    box-shadow:
+    0 12px 25px rgba(22,163,74,.25);
 
 }
 
-.excluir{
+button:active{
 
-    background:#ef4444;
+    transform:scale(.98);
+
+}
+
+/* =====================================================
+   MENSAGEM
+===================================================== */
+
+#mensagem{
+
+    margin-top:18px;
+
+    text-align:center;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    color:#dc2626;
+
+    min-height:20px;
+
+}
+
+/* =====================================================
+   LINK CADASTRO / LOGIN
+===================================================== */
+
+.cadastro-link{
+
+    margin-top:28px;
+
+    text-align:center;
+
+    color:#64748b;
+
+    font-size:15px;
+
+}
+
+.cadastro-link a{
+
+    color:#16a34a;
+
+    font-weight:bold;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+.cadastro-link a:hover{
+
+    text-decoration:underline;
+
+}
+
+/* =====================================================
+   PLACEHOLDER
+===================================================== */
+
+input::placeholder{
+
+    color:#94a3b8;
+
+}
+
+/* =====================================================
+   AUTOFILL
+===================================================== */
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus{
+
+    -webkit-box-shadow:
+    0 0 0px 1000px white inset;
+
+    -webkit-text-fill-color:#111827;
+
+}
+
+/* =====================================================
+   SELEÇÃO
+===================================================== */
+
+::selection{
+
+    background:#22c55e;
 
     color:white;
 
 }
 
-.excluir:hover{
-
-    transform:scale(1.12);
-
-    background:#dc2626;
-
-}
-
-
-
-/* ==========================================================
+/* =====================================================
    SCROLL
-========================================================== */
+===================================================== */
 
 ::-webkit-scrollbar{
 
@@ -698,13 +306,13 @@ body.dark #transacoes li{
 
 ::-webkit-scrollbar-track{
 
-    background:#e5e7eb;
+    background:#e2e8f0;
 
 }
 
 ::-webkit-scrollbar-thumb{
 
-    background:var(--verde);
+    background:#16a34a;
 
     border-radius:20px;
 
@@ -712,92 +320,87 @@ body.dark #transacoes li{
 
 ::-webkit-scrollbar-thumb:hover{
 
-    background:var(--verdeEscuro);
+    background:#15803d;
 
-}
-/* ==========================================================
-   MODAL
-========================================================== */
+}/* =====================================================
+   RESPONSIVIDADE
+===================================================== */
 
-.modal{
+@media(max-width:480px){
 
-    position:fixed;
+    body{
 
-    inset:0;
-
-    display:none;
-
-    justify-content:center;
-
-    align-items:center;
-
-    background:rgba(0,0,0,.45);
-
-    backdrop-filter:blur(5px);
-
-    z-index:999;
-
-}
-
-.modal-conteudo{
-
-    width:380px;
-
-    max-width:90%;
-
-    background:var(--card);
-
-    color:var(--texto);
-
-    border-radius:20px;
-
-    padding:30px;
-
-    text-align:center;
-
-    box-shadow:0 20px 45px rgba(0,0,0,.30);
-
-    animation:modal .30s ease;
-
-}
-
-@keyframes modal{
-
-    from{
-
-        transform:scale(.85);
-
-        opacity:0;
+        padding:15px;
 
     }
 
-    to{
 
-        transform:scale(1);
+    .login-container{
 
-        opacity:1;
+        padding:30px 22px;
+
+        border-radius:16px;
+
+    }
+
+
+    .logo h1{
+
+        font-size:28px;
+
+    }
+
+
+    .logo p{
+
+        font-size:14px;
+
+    }
+
+
+    .input-box input{
+
+        padding:13px;
+
+        font-size:15px;
+
+    }
+
+
+    button{
+
+        padding:14px;
+
+        font-size:16px;
 
     }
 
 }
 
-.modal h3{
 
-    font-size:24px;
+/* =====================================================
+   CAMPOS DO CADASTRO
+===================================================== */
 
-    margin-bottom:12px;
+.cadastro-container{
 
-}
-
-.modal p{
-
-    color:var(--cinza);
-
-    margin-bottom:25px;
+    max-width:500px;
 
 }
 
-.modal-botoes{
+
+.cadastro-container .input-box{
+
+    margin-bottom:18px;
+
+}
+
+
+/* =====================================================
+   GRUPO DE INPUTS
+===================================================== */
+
+.input-group{
 
     display:flex;
 
@@ -805,330 +408,182 @@ body.dark #transacoes li{
 
 }
 
-.modal-botoes button{
+
+.input-group .input-box{
 
     flex:1;
 
-    padding:14px;
+}
 
-    border:none;
 
-    border-radius:12px;
+/* =====================================================
+   INPUT COM ÍCONE
+===================================================== */
+
+.input-icon{
+
+    position:relative;
+
+}
+
+
+.input-icon input{
+
+    padding-left:45px;
+
+}
+
+
+.input-icon i{
+
+    position:absolute;
+
+    left:15px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:#94a3b8;
+
+    font-size:18px;
+
+}
+
+
+/* =====================================================
+   MOSTRAR SENHA
+===================================================== */
+
+.password-area{
+
+    position:relative;
+
+}
+
+
+.password-area input{
+
+    padding-right:45px;
+
+}
+
+
+.password-area span{
+
+    position:absolute;
+
+    right:15px;
+
+    top:50%;
+
+    transform:translateY(-50%);
 
     cursor:pointer;
 
-    font-weight:bold;
+    color:#64748b;
 
     transition:.3s;
 
 }
 
-#cancelarExcluir{
 
-    background:#e5e7eb;
+.password-area span:hover{
 
-    color:#111827;
-
-}
-
-#cancelarExcluir:hover{
-
-    background:#d1d5db;
-
-}
-
-#confirmarExcluir{
-
-    background:#ef4444;
-
-    color:white;
-
-}
-
-#confirmarExcluir:hover{
-
-    background:#dc2626;
+    color:#16a34a;
 
 }
 
 
+/* =====================================================
+   ALERTAS
+===================================================== */
 
-/* ==========================================================
-   MODO ESCURO
-========================================================== */
+.sucesso{
 
-body.dark{
-
-    background:#111827;
-
-}
-
-body.dark header{
-
-    background:linear-gradient(
-        135deg,
-        #166534,
-        #15803d
-    );
-
-}
-
-body.dark .card,
-body.dark .grafico,
-body.dark .formulario,
-body.dark .lista,
-body.dark .modal-conteudo{
-
-    background:#1f2937;
-
-    color:#f8fafc;
-
-}
-
-body.dark .card h3,
-body.dark h2,
-body.dark h3{
-
-    color:#ffffff;
-
-}
-
-body.dark .tema-btn{
-
-    background:#374151;
-
-    color:#f8fafc;
-
-}
-
-body.dark #transacoes li{
-
-    background:#374151;
-
-}
-
-body.dark #cancelarExcluir{
-
-    background:#374151;
-
-    color:white;
+    color:#16a34a !important;
 
 }
 
 
+.erro{
 
-/* ==========================================================
-   BOTÕES
-========================================================== */
-
-button{
-
-    transition:
-    transform .25s,
-    box-shadow .25s,
-    opacity .25s;
-
-}
-
-button:hover{
-
-    opacity:.95;
-
-}
-
-button:active{
-
-    transform:scale(.96);
+    color:#dc2626 !important;
 
 }
 
 
+/* =====================================================
+   BOTÃO DESABILITADO
+===================================================== */
 
-/* ==========================================================
-   CARDS
-========================================================== */
+button:disabled{
 
-.card strong{
+    background:#94a3b8;
 
-    display:block;
+    cursor:not-allowed;
 
-    margin-top:8px;
+    transform:none;
+
+    box-shadow:none;
 
 }
 
-.card:hover{
+
+/* =====================================================
+   CHECKBOX
+===================================================== */
+
+.checkbox{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin:15px 0;
+
+    color:#475569;
+
+    font-size:14px;
+
+}
+
+
+.checkbox input{
+
+    width:16px;
+
+    height:16px;
+
+    accent-color:#16a34a;
+
+}
+
+
+/* =====================================================
+   EFEITO DE FOCO NO FORMULÁRIO
+===================================================== */
+
+.login-container:hover{
 
     box-shadow:
-
-    0 18px 40px rgba(0,0,0,.12);
-
-}
-
-
-
-/* ==========================================================
-   INPUTS
-========================================================== */
-
-input::placeholder{
-
-    color:#94a3b8;
-
-}
-
-body.dark input::placeholder{
-
-    color:#cbd5e1;
+    0 25px 60px rgba(0,0,0,.4);
 
 }
 
 
+/* =====================================================
+   ANIMAÇÃO DOS INPUTS
+===================================================== */
 
-/* ==========================================================
-   LINKS
-========================================================== */
+.input-box{
 
-a{
-
-    text-decoration:none;
-
-    color:inherit;
+    animation:aparecer .4s ease forwards;
 
 }
 
-
-
-/* ==========================================================
-   RESPONSIVIDADE
-========================================================== */
-
-@media(max-width:1100px){
-
-    main{
-
-        padding:25px;
-
-    }
-
-}
-
-@media(max-width:900px){
-
-    header{
-
-        flex-direction:column;
-
-        gap:15px;
-
-        text-align:center;
-
-    }
-
-}
-
-@media(max-width:700px){
-
-    .resumo{
-
-        grid-template-columns:1fr;
-
-    }
-
-    #formTransacao{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .filtros{
-
-        flex-direction:column;
-
-    }
-
-    .filtros input{
-
-        min-width:100%;
-
-    }
-
-    #transacoes li{
-
-        flex-direction:column;
-
-        align-items:flex-start;
-
-        gap:15px;
-
-    }
-
-    .acoes{
-
-        margin-left:0;
-
-    }
-
-}
-
-@media(max-width:500px){
-
-    header{
-
-        padding:20px;
-
-    }
-
-    header h1{
-
-        font-size:28px;
-
-    }
-
-    main{
-
-        padding:15px;
-
-    }
-
-    .card{
-
-        padding:20px;
-
-    }
-
-    .card strong{
-
-        font-size:30px;
-
-    }
-
-    .grafico,
-    .formulario,
-    .lista{
-
-        padding:20px;
-
-    }
-
-    .modal-conteudo{
-
-        padding:20px;
-
-    }
-
-}
-
-
-
-/* ==========================================================
-   ANIMAÇÃO SUAVE DAS TRANSAÇÕES
-========================================================== */
-
-#transacoes li{
-
-    animation:aparecer .35s ease;
-
-}
 
 @keyframes aparecer{
 
@@ -1136,30 +591,59 @@ a{
 
         opacity:0;
 
-        transform:translateY(15px);
+        transform:translateX(-15px);
 
     }
+
 
     to{
 
         opacity:1;
 
-        transform:translateY(0);
+        transform:translateX(0);
 
     }
 
 }
 
 
+/* =====================================================
+   LINKS GERAIS
+===================================================== */
 
-/* ==========================================================
-   SELEÇÃO DE TEXTO
-========================================================== */
+a{
 
-::selection{
+    transition:.3s ease;
 
-    background:#22c55e;
+}
 
-    color:white;
+
+/* =====================================================
+   TELAS MUITO PEQUENAS
+===================================================== */
+
+@media(max-width:350px){
+
+    .login-container{
+
+        padding:25px 15px;
+
+    }
+
+
+    .logo h1{
+
+        font-size:24px;
+
+    }
+
+
+    .input-group{
+
+        flex-direction:column;
+
+        gap:0;
+
+    }
 
 }
