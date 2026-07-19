@@ -5,15 +5,12 @@ const path = require("path");
 const sequelize = require("./config/database");
 
 require("./models/User");
-require("./models/Transaction");
-
 
 const transactionRoutes = require("./routes/transactions");
 const userRoutes = require("./routes/users");
 
 
 const app = express();
-
 
 // CORS
 app.use(cors());
