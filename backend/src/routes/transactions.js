@@ -1,22 +1,75 @@
 const express = require("express");
+
 console.log("TRANSACTIONS.JS CARREGADO");
+
 const router = express.Router();
 
 const auth = require("../middleware/auth");
+
 const Transaction = require("../models/Transaction");
 
 
 
-// ===============================
-// BUSCAR TRANSAÇÕES DO USUÁRIO
-// ===============================
+// ==================================
+// BUSCAR TRANSAÇÕES DO USUÁRIO LOGADO
+// ==================================
+
+router.get("/", auth, async(req,res)=>{
+
+    try{
+
+
+        console.log("USUÁRIO BUSCANDO:", req.user);
+
+
+
+        const transactions = await Transaction.findAll({
+
+            where:{
+                userId:req.user.id
+            }
+
+        });
+
+
+
+        res.json(transactions);
+
+
+
+    }catch(error){
+
+
+        console.log(error);
+
+
+        res.status(500).json({
+
+            erro:"Erro ao buscar transações"
+
+        });
+
+
+    }
+
+});
+
+
+
+
+// ==================================
+// CRIAR TRANSAÇÃO
+// ==================================
 
 router.post("/", auth, async(req,res)=>{
 
+
     console.log("===== POST TRANSAÇÃO =====");
-    console.log("HEADERS:", req.headers.authorization);
+
     console.log("REQ.USER:", req.user);
+
     console.log("BODY:", req.body);
+
 
 
     try{
@@ -24,19 +77,27 @@ router.post("/", auth, async(req,res)=>{
 
         const dados = {
 
-            description: req.body.description,
 
-            amount: req.body.amount,
+            description:req.body.description,
 
-            type: req.body.type,
 
-            date: req.body.date,
+            amount:req.body.amount,
 
-            category: req.body.category,
 
-            userId: req.user.id
+            type:req.body.type,
+
+
+            date:req.body.date,
+
+
+            category:req.body.category,
+
+
+            userId:req.user.id
+
 
         };
+
 
 
         console.log("DADOS PARA O BANCO:", dados);
@@ -47,7 +108,7 @@ router.post("/", auth, async(req,res)=>{
 
 
 
-        console.log("CRIADA:", transaction);
+        console.log("TRANSAÇÃO CRIADA:", transaction);
 
 
 
@@ -71,58 +132,6 @@ router.post("/", auth, async(req,res)=>{
 
     }
 
-});
-
-
-
-
-// ===============================
-// CRIAR TRANSAÇÃO
-// ===============================
-
-router.post("/", auth, async(req,res)=>{
-
-    console.log("REQ.USER NO POST:", req.user);
-    try{
-
-
-        const transaction = await Transaction.create({
-
-            description:req.body.description,
-
-            amount:req.body.amount,
-
-            type:req.body.type,
-
-            date:req.body.date,
-
-            category:req.body.category,
-
-            userId:req.user.id
-
-        });
-
-
-
-        res.json(transaction);
-
-
-
-    }catch(error){
-
-
-        console.log(error);
-
-
-        res.status(500).json({
-
-            erro:"Erro ao criar transação"
-
-        });
-
-
-    }
-
 
 });
 
@@ -130,25 +139,21 @@ router.post("/", auth, async(req,res)=>{
 
 
 
-
-// ===============================
+// ==================================
 // DELETAR TRANSAÇÃO
-// ===============================
+// ==================================
 
 router.delete("/:id", auth, async(req,res)=>{
 
+
     try{
-
-
-        const id = req.params.id;
-
 
 
         const apagada = await Transaction.destroy({
 
             where:{
 
-                id:id,
+                id:req.params.id,
 
                 userId:req.user.id
 
@@ -160,11 +165,13 @@ router.delete("/:id", auth, async(req,res)=>{
 
         if(apagada === 0){
 
+
             return res.status(403).json({
 
                 erro:"Você não pode apagar essa transação"
 
             });
+
 
         }
 
@@ -184,6 +191,7 @@ router.delete("/:id", auth, async(req,res)=>{
         console.log(error);
 
 
+
         res.status(500).json({
 
             erro:"Erro ao remover transação"
@@ -200,36 +208,57 @@ router.delete("/:id", auth, async(req,res)=>{
 
 
 
-
-
-// ===============================
+// ==================================
 // EDITAR TRANSAÇÃO
-// ===============================
+// ==================================
 
 router.put("/:id", auth, async(req,res)=>{
+
 
     try{
 
 
-        const id = req.params.id;
-
-
-
         const atualizada = await Transaction.update(
 
-            req.body,
 
             {
 
+
+                description:req.body.description,
+
+
+                amount:req.body.amount,
+
+
+                type:req.body.type,
+
+
+                date:req.body.date,
+
+
+                category:req.body.category
+
+
+            },
+
+
+            {
+
+
                 where:{
 
-                    id:id,
+
+                    id:req.params.id,
+
 
                     userId:req.user.id
 
+
                 }
 
+
             }
+
 
         );
 
@@ -249,7 +278,6 @@ router.put("/:id", auth, async(req,res)=>{
 
 
 
-
         res.json({
 
             mensagem:"Transação atualizada"
@@ -264,9 +292,10 @@ router.put("/:id", auth, async(req,res)=>{
         console.log(error);
 
 
+
         res.status(500).json({
 
-            erro:"Erro ao atualizar"
+            erro:"Erro ao atualizar transação"
 
         });
 
