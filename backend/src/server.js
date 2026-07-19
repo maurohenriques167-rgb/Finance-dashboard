@@ -4,22 +4,27 @@ const path = require("path");
 
 const sequelize = require("./config/database");
 
+// Carregar modelos
 require("./models/User");
+require("./models/Transaction");
 
+
+// Rotas
 const transactionRoutes = require("./routes/transactions");
 const userRoutes = require("./routes/users");
 
 
+
 const app = express();
 
-// CORS
+
+// ===============================
+// MIDDLEWARES
+// ===============================
+
 app.use(cors());
 
-
-// JSON
 app.use(express.json());
-
-const path = require("path");
 
 
 // ===============================
@@ -47,7 +52,9 @@ app.get("/", (req,res)=>{
 });
 
 
-// Rotas API
+// ===============================
+// ROTAS DA API
+// ===============================
 
 app.use("/transactions", transactionRoutes);
 
@@ -55,8 +62,9 @@ app.use("/users", userRoutes);
 
 
 
-
-// Banco
+// ===============================
+// BANCO DE DADOS
+// ===============================
 
 sequelize.authenticate()
 
@@ -74,8 +82,6 @@ sequelize.authenticate()
 
 
 
-
-
 sequelize.sync()
 
 .then(()=>{
@@ -84,22 +90,22 @@ sequelize.sync()
 
 })
 
-.catch((err)=>{
+.catch((error)=>{
 
-    console.log("Erro ao sincronizar:",err);
+    console.log("Erro ao sincronizar:", error);
 
 });
 
 
 
-
-
-// Porta Render
+// ===============================
+// SERVIDOR
+// ===============================
 
 const PORT = process.env.PORT || 3000;
 
 
-app.listen(PORT,()=>{
+app.listen(PORT, ()=>{
 
     console.log(
         `Servidor rodando na porta ${PORT}`
