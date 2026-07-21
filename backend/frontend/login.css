@@ -1,0 +1,679 @@
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Arial,sans-serif;
+}
+body{
+
+    min-height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:
+    linear-gradient(
+        135deg,
+        #0f172a,
+        #1e293b
+    );
+
+    padding:20px;
+
+}
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.login-container{
+
+    width:100%;
+    max-width:420px;
+
+    background:#fff;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,.35);
+
+    animation:subir .5s ease;
+
+}
+
+/* =====================================================
+   ANIMAÇÃO
+===================================================== */
+
+@keyframes subir{
+
+    from{
+
+        opacity:0;
+        transform:translateY(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.logo{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+.logo h1{
+
+    color:#16a34a;
+
+    font-size:34px;
+
+    margin-bottom:10px;
+
+}
+
+.logo p{
+
+    color:#64748b;
+
+    font-size:15px;
+
+    line-height:22px;
+
+}
+
+/* =====================================================
+   INPUTS
+===================================================== */
+
+.input-box{
+
+    margin-bottom:20px;
+
+}
+
+.input-box label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    color:#334155;
+
+    font-weight:600;
+
+    font-size:15px;
+
+}
+
+.input-box input{
+
+    width:100%;
+
+    padding:14px;
+
+    border-radius:10px;
+
+    border:1px solid #cbd5e1;
+
+    font-size:16px;
+
+    outline:none;
+
+    transition:.3s;
+
+    background:white;
+
+}
+
+.input-box input:focus{
+
+    border-color:#16a34a;
+
+    box-shadow:
+    0 0 0 4px rgba(22,163,74,.18);
+
+}
+/* =====================================================
+   BOTÃO
+===================================================== */
+
+button{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#16a34a;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+button:hover{
+
+    background:#15803d;
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 12px 25px rgba(22,163,74,.25);
+
+}
+
+button:active{
+
+    transform:scale(.98);
+
+}
+
+/* =====================================================
+   MENSAGEM
+===================================================== */
+
+#mensagem{
+
+    margin-top:18px;
+
+    text-align:center;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    color:#dc2626;
+
+    min-height:20px;
+
+}
+
+/* =====================================================
+   LINK CADASTRO / LOGIN
+===================================================== */
+
+.cadastro-link{
+
+    margin-top:28px;
+
+    text-align:center;
+
+    color:#64748b;
+
+    font-size:15px;
+
+}
+
+.cadastro-link a{
+
+    color:#16a34a;
+
+    font-weight:bold;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+.cadastro-link a:hover{
+
+    text-decoration:underline;
+
+}
+
+/* =====================================================
+   PLACEHOLDER
+===================================================== */
+
+input::placeholder{
+
+    color:#94a3b8;
+
+}
+
+/* =====================================================
+   AUTOFILL
+===================================================== */
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus{
+
+    -webkit-box-shadow:
+    0 0 0px 1000px white inset;
+
+    -webkit-text-fill-color:#111827;
+
+}
+
+/* =====================================================
+   SELEÇÃO
+===================================================== */
+
+::selection{
+
+    background:#22c55e;
+
+    color:white;
+
+}
+
+/* =====================================================
+   SCROLL
+===================================================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#e2e8f0;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#16a34a;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#15803d;
+
+}/* =====================================================
+   RESPONSIVIDADE
+===================================================== */
+
+@media(max-width:480px){
+
+    body{
+
+        padding:15px;
+
+    }
+
+
+    .login-container{
+
+        padding:30px 22px;
+
+        border-radius:16px;
+
+    }
+
+
+    .logo h1{
+
+        font-size:28px;
+
+    }
+
+
+    .logo p{
+
+        font-size:14px;
+
+    }
+
+
+    .input-box input{
+
+        padding:13px;
+
+        font-size:15px;
+
+    }
+
+
+    button{
+
+        padding:14px;
+
+        font-size:16px;
+
+    }
+
+}
+
+
+/* =====================================================
+   CAMPOS DO CADASTRO
+===================================================== */
+
+.cadastro-container{
+
+    max-width:500px;
+
+}
+
+
+.cadastro-container .input-box{
+
+    margin-bottom:18px;
+
+}
+
+
+/* =====================================================
+   GRUPO DE INPUTS
+===================================================== */
+
+.input-group{
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+
+.input-group .input-box{
+
+    flex:1;
+
+}
+
+
+/* =====================================================
+   INPUT COM ÍCONE
+===================================================== */
+
+.input-icon{
+
+    position:relative;
+
+}
+
+
+.input-icon input{
+
+    padding-left:45px;
+
+}
+
+
+.input-icon i{
+
+    position:absolute;
+
+    left:15px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:#94a3b8;
+
+    font-size:18px;
+
+}
+
+
+/* =====================================================
+   MOSTRAR SENHA
+===================================================== */
+
+.password-area{
+
+    position:relative;
+
+}
+
+
+.password-area input{
+
+    padding-right:45px;
+
+}
+
+
+.password-area span{
+
+    position:absolute;
+
+    right:15px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    cursor:pointer;
+
+    color:#64748b;
+
+    transition:.3s;
+
+}
+
+
+.password-area span:hover{
+
+    color:#16a34a;
+
+}
+
+
+/* =====================================================
+   ALERTAS
+===================================================== */
+
+.sucesso{
+
+    color:#16a34a !important;
+
+}
+
+
+.erro{
+
+    color:#dc2626 !important;
+
+}
+
+
+/* =====================================================
+   BOTÃO DESABILITADO
+===================================================== */
+
+button:disabled{
+
+    background:#94a3b8;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+    box-shadow:none;
+
+}
+
+
+/* =====================================================
+   CHECKBOX
+===================================================== */
+
+.checkbox{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin:15px 0;
+
+    color:#475569;
+
+    font-size:14px;
+
+}
+
+
+.checkbox input{
+
+    width:16px;
+
+    height:16px;
+
+    accent-color:#16a34a;
+
+}
+
+
+/* =====================================================
+   EFEITO DE FOCO NO FORMULÁRIO
+===================================================== */
+
+.login-container:hover{
+
+    box-shadow:
+    0 25px 60px rgba(0,0,0,.4);
+
+}
+
+
+/* =====================================================
+   ANIMAÇÃO DOS INPUTS
+===================================================== */
+
+.input-box{
+
+    animation:aparecer .4s ease forwards;
+
+}
+
+
+@keyframes aparecer{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(-15px);
+
+    }
+
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+
+
+/* =====================================================
+   LINKS GERAIS
+===================================================== */
+
+a{
+
+    transition:.3s ease;
+
+}
+
+
+/* =====================================================
+   TELAS MUITO PEQUENAS
+===================================================== */
+
+@media(max-width:350px){
+
+    .login-container{
+
+        padding:25px 15px;
+
+    }
+
+
+    .logo h1{
+
+        font-size:24px;
+
+    }
+
+
+    .input-group{
+
+        flex-direction:column;
+
+        gap:0;
+
+    }
+
+}
+footer{
+
+    margin-top:25px;
+
+    color:#cbd5e1;
+
+    font-size:14px;
+
+    text-align:center;
+
+}
+
+
+footer a{
+
+    color:#22c55e;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+}
+
+
+footer a:hover{
+
+    text-decoration:underline;
+
+}

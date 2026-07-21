@@ -16,7 +16,15 @@ function auth(req,res,next){
     }
 
 
-    const token = header.split(" ")[1];
+    if (!header || !header.startsWith("Bearer ")) {
+
+    return res.status(401).json({
+        erro: "Token não enviado"
+    });
+
+}
+
+const token = header.split(" ")[1];
 
 
     try{

@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Finance Dashboard</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- ==========================================
+MENU LATERAL
+=========================================== -->
+
+
+<div id="menuLateral" class="menu-lateral">
+
+
+    <div class="menu-header">
+
+
+        <div class="logo">
+
+
+            <div class="logo-icon">
+
+                💰
+
+            </div>
+
+
+            <div>
+
+                <h2>
+
+                    Finance
+
+                </h2>
+
+                <span>
+
+                    Dashboard
+
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+
+
+        <button id="fecharMenu">
+
+
+            <i class="fa-solid fa-xmark"></i>
+
+
+        </button>
+
+
+    </div>
+
+
+
+
+
+    <nav>
+
+
+        <a href="#inicio">
+
+
+            <i class="fa-solid fa-house"></i>
+
+
+            <span>
+
+                Início
+
+            </span>
+
+
+        </a>
+
+
+
+
+
+        <a href="#grafico">
+
+
+            <i class="fa-solid fa-chart-pie"></i>
+
+
+            <span>
+
+                Gráficos
+
+            </span>
+
+
+        </a>
+
+
+
+
+
+        <a href="#historico">
+
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+
+            <span>
+
+                Histórico
+
+            </span>
+
+
+        </a>
+
+
+
+
+
+        <a href="#metas">
+
+
+            <i class="fa-solid fa-bullseye"></i>
+
+
+            <span>
+
+                Metas
+
+            </span>
+
+
+        </a>
+
+
+
+
+
+        <a href="#regra">
+
+
+            <i class="fa-solid fa-percent"></i>
+
+
+            <span>
+
+                70/20/10
+
+            </span>
+
+
+        </a>
+
+
+
+
+
+        <a href="#perfil">
+
+
+            <i class="fa-solid fa-user"></i>
+
+
+            <span>
+
+                Perfil
+
+            </span>
+
+
+        </a>
+
+
+    </nav>
+
+
+
+</div>
+
+
+
+
+
+<!-- FUNDO ESCURO AO ABRIR MENU -->
+
+<div id="fundoMenu" class="fundo-menu"></div>
+<!-- ==========================================
+CONTEÚDO
+=========================================== -->
+
+<div class="conteudo">
+
+<header class="topbar">
+
+
+<div class="topbar-esquerda">
+
+
+<button id="menuBtn" class="menu-btn">
+
+
+    <i class="fa-solid fa-bars"></i>
+
+
+</button>
+
+
+
+<div>
+
+
+<h1>
+
+Olá,
+
+<span id="nomeUsuario">
+
+Usuário
+
+</span>
+
+👋
+
+</h1>
+
+
+<p>
+
+Controle suas finanças de forma inteligente.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="topbar-acoes">
+
+
+
+<button id="temaBtn" class="tema-btn">
+
+🌙
+
+</button>
+
+<button id="logoutBtn" class="logout-btn">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Sair
+
+</button>
+
+</div>
+
+</header>
+
+<!-- ==========================================
+CARDS
+=========================================== -->
+
+<section class="cards-resumo" id="inicio">
+
+<div class="card saldo">
+
+<div class="icone">
+
+<i class="fa-solid fa-wallet"></i>
+
+</div>
+
+<div>
+
+<p>Saldo Atual</p>
+
+<h2 id="saldo">
+
+R$ 0,00
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="card receita">
+
+<div class="icone">
+
+<i class="fa-solid fa-arrow-trend-up"></i>
+
+</div>
+
+<div>
+
+<p>Receitas</p>
+
+<h2 id="receitas">
+
+R$ 0,00
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="card despesa">
+
+<div class="icone">
+
+<i class="fa-solid fa-arrow-trend-down"></i>
+
+</div>
+
+<div>
+
+<p>Despesas</p>
+
+<h2 id="despesas">
+
+R$ 0,00
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="card xp">
+
+<div class="icone">
+
+⭐
+
+</div>
+
+<div>
+
+<p>Nível Financeiro</p>
+
+<h2>
+
+<span id="xp">
+
+0
+
+</span>
+
+XP
+
+</h2>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ==========================================
+AÇÕES
+=========================================== -->
+
+<section class="acoes-rapidas">
+
+<button id="btnReceita" class="btn-receita">
+
+<i class="fa-solid fa-circle-plus"></i>
+
+Nova Receita
+
+</button>
+
+<button id="btnDespesa" class="btn-despesa">
+
+<i class="fa-solid fa-circle-minus"></i>
+
+Nova Despesa
+
+</button>
+
+<button id="btnMetas">
+
+<i class="fa-solid fa-bullseye"></i>
+
+Metas
+
+</button>
+
+<button id="btnAjuda">
+
+<i class="fa-solid fa-circle-question"></i>
+
+Como funciona?
+
+</button>
+
+</section>
+
+<!-- ==========================================
+GRID
+=========================================== -->
+
+<div class="dashboard-grid">
+
+<section class="grafico-card" id="grafico">
+
+<div class="titulo-card">
+
+<div>
+
+<h2>
+
+Resumo Financeiro
+
+</h2>
+
+<p>
+
+Atualização em tempo real
+
+</p>
+
+</div>
+
+<select id="filtroMes">
+
+<option value="todos">
+
+Todos os meses
+
+</option>
+
+</select>
+
+</div>
+
+<div class="grafico-container">
+
+<canvas id="graficoFinanceiro"></canvas>
+
+</div>
+
+</section>
+<!-- ==========================================
+RESUMO MENSAL
+=========================================== -->
+
+<section class="resumo-mensal">
+
+<div class="titulo-card">
+
+<div>
+
+<h2>Resumo do Mês</h2>
+
+<p>Acompanhe sua evolução financeira</p>
+
+</div>
+
+</div>
+
+<div class="resumo-grid">
+
+<div class="mini-card">
+
+<h4>Economizado</h4>
+
+<strong id="economizado">
+
+R$ 0,00
+
+</strong>
+
+</div>
+
+<div class="mini-card">
+
+<h4>Maior Receita</h4>
+
+<strong id="maiorReceita">
+
+R$ 0,00
+
+</strong>
+
+</div>
+
+<div class="mini-card">
+
+<h4>Maior Despesa</h4>
+
+<strong id="maiorDespesa">
+
+R$ 0,00
+
+</strong>
+
+</div>
+
+<div class="mini-card">
+
+<h4>Transações</h4>
+
+<strong id="totalTransacoes">
+
+0
+
+</strong>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ==========================================
+REGRA 70/20/10
+=========================================== -->
+
+<section class="regra-card" id="regra">
+
+<div class="titulo-card">
+
+<div>
+
+<h2>Regra Financeira 70 / 20 / 10</h2>
+
+<p>Seu desempenho financeiro</p>
+
+</div>
+
+<button id="btnExplicarRegra">
+
+Como funciona?
+
+</button>
+
+</div>
+
+<div class="barra-porcentagens">
+
+<div class="barra-item">
+
+<div class="barra-info">
+
+<span>70% Gastos Fixos</span>
+
+<span id="valor70">
+
+0%
+
+</span>
+
+</div>
+
+<div class="barra">
+
+<div id="barra70"></div>
+
+</div>
+
+</div>
+
+<div class="barra-item">
+
+<div class="barra-info">
+
+<span>20% Lazer</span>
+
+<span id="valor20">
+
+0%
+
+</span>
+
+</div>
+
+<div class="barra">
+
+<div id="barra20"></div>
+
+</div>
+
+</div>
+
+<div class="barra-item">
+
+<div class="barra-info">
+
+<span>10% Investimentos</span>
+
+<span id="valor10">
+
+0%
+
+</span>
+
+</div>
+
+<div class="barra">
+
+<div id="barra10"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="xp-area">
+
+<div>
+
+<h3>
+
+Seu progresso
+
+</h3>
+
+<p>
+
+Continue mantendo sua meta para ganhar XP.
+
+</p>
+
+</div>
+
+<div class="xp-barra">
+
+<div id="xpBarra"></div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ==========================================
+OBJETIVOS
+=========================================== -->
+
+<section class="metas-card" id="metas">
+
+<div class="titulo-card">
+
+<div>
+
+<h2>
+
+Objetivos Financeiros
+
+</h2>
+
+<p>
+
+Planejamento pessoal
+
+</p>
+
+</div>
+
+<button id="novaMeta">
+
+Nova Meta
+
+</button>
+
+</div>
+
+<div id="listaMetas">
+
+<div class="meta-item">
+
+<div>
+
+<h3>
+
+Reserva de Emergência
+
+</h3>
+
+<p>
+
+Meta inicial
+
+</p>
+
+</div>
+
+<div>
+
+<strong>
+
+R$ 0,00
+
+</strong>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+<!-- ==========================================
+HISTÓRICO
+=========================================== -->
+
+<section class="lista" id="historico">
+
+<div class="titulo-card">
+
+<div>
+
+<h2>
+
+Histórico Financeiro
+
+</h2>
+
+<p>
+
+Todas as movimentações
+
+</p>
+
+</div>
+
+</div>
+
+<div class="filtros">
+
+<input
+type="text"
+id="pesquisa"
+placeholder="Pesquisar transação...">
+
+<select id="filtroTipo">
+
+<option value="todos">
+
+Todas
+
+</option>
+
+<option value="receita">
+
+Receitas
+
+</option>
+
+<option value="despesa">
+
+Despesas
+
+</option>
+
+</select>
+
+<select id="filtroCategoria">
+
+<option value="todos">
+
+Todas Categorias
+
+</option>
+
+<option>
+
+Alimentação
+
+</option>
+
+<option>
+
+Moradia
+
+</option>
+
+<option>
+
+Transporte
+
+</option>
+
+<option>
+
+Lazer
+
+</option>
+
+<option>
+
+Investimentos
+
+</option>
+
+<option>
+
+Contas
+
+</option>
+
+<option>
+
+Outros
+
+</option>
+
+</select>
+
+<select id="filtroMesHistorico">
+
+<option value="todos">
+
+Todos os meses
+
+</option>
+
+</select>
+
+</div>
+
+<ul id="transacoes">
+
+</ul>
+
+</section>
+<!-- ==========================================
+MODAL RECEITA
+=========================================== -->
+
+<div id="modalReceita" class="modal-transacao">
+
+    <div class="popup-transacao receita-popup">
+
+        <div class="popup-header">
+
+            <h2>
+
+                <i class="fa-solid fa-circle-plus"></i>
+
+                Nova Receita
+
+            </h2>
+
+            <button id="fecharReceita" class="fechar-popup">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+        <form id="formReceita">
+
+            <div class="campo">
+
+                <label>Descrição</label>
+
+                <input
+                    type="text"
+                    id="descricaoReceita"
+                    placeholder="Ex: Salário">
+
+            </div>
+
+            <div class="campo">
+
+                <label>Valor</label>
+
+                <input
+                    type="number"
+                    id="valorReceita"
+                    step="0.01">
+
+            </div>
+
+            <div class="campo">
+
+                <label>Categoria</label>
+
+                <select id="categoriaReceita">
+
+                    <option>Salário</option>
+                    <option>Freelance</option>
+                    <option>Investimentos</option>
+                    <option>Presente</option>
+                    <option>Outros</option>
+
+                </select>
+
+            </div>
+
+            <div class="campo">
+
+                <label>Data</label>
+
+                <input
+                    type="date"
+                    id="dataReceita">
+
+            </div>
+
+            <button
+                class="salvarReceita"
+                type="submit">
+
+                Adicionar Receita
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+MODAL DESPESA
+=========================================== -->
+
+<div id="modalDespesa" class="modal-transacao">
+
+    <div class="popup-transacao despesa-popup">
+
+        <div class="popup-header">
+
+            <h2>
+
+                <i class="fa-solid fa-circle-minus"></i>
+
+                Nova Despesa
+
+            </h2>
+
+            <button
+                id="fecharDespesa"
+                class="fechar-popup">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+        <form id="formDespesa">
+
+            <div class="campo">
+
+                <label>Descrição</label>
+
+                <input
+                    type="text"
+                    id="descricaoDespesa"
+                    placeholder="Ex: Mercado">
+
+            </div>
+
+            <div class="campo">
+
+                <label>Valor</label>
+
+                <input
+                    type="number"
+                    id="valorDespesa"
+                    step="0.01">
+
+            </div>
+
+            <div class="campo">
+
+                <label>Categoria</label>
+
+                <select id="categoriaDespesa">
+
+                    <option>Alimentação</option>
+                    <option>Moradia</option>
+                    <option>Transporte</option>
+                    <option>Lazer</option>
+                    <option>Investimentos</option>
+                    <option>Contas</option>
+                    <option>Outros</option>
+
+                </select>
+
+            </div>
+
+            <div class="campo">
+
+                <label>Tipo de Gasto</label>
+
+                <select id="tipoGasto">
+
+                    <option value="fixo">
+
+                        Gasto Fixo
+
+                    </option>
+
+                    <option value="lazer">
+
+                        Lazer
+
+                    </option>
+
+                    <option value="investimento">
+
+                        Investimento
+
+                    </option>
+
+                    <option value="outros">
+
+                        Outros
+
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="campo">
+
+                <label>Data</label>
+
+                <input
+                    type="date"
+                    id="dataDespesa">
+
+            </div>
+
+            <button
+                class="salvarDespesa"
+                type="submit">
+
+                Adicionar Despesa
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+MODAL EDITAR TRANSAÇÃO
+=========================================== -->
+
+<div id="modalEditar" class="modal-transacao">
+
+    <div class="popup-transacao">
+
+        <div class="popup-header">
+
+            <h2>
+
+                Editar Transação
+
+            </h2>
+
+            <button
+                id="fecharEditar"
+                class="fechar-popup">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+        <form id="formEditar">
+
+            <input
+                type="hidden"
+                id="editarId">
+
+            <div class="campo">
+
+                <label>Descrição</label>
+
+                <input
+                    type="text"
+                    id="editarDescricao">
+
+            </div>
+
+            <div class="campo">
+
+                <label>Valor</label>
+
+                <input
+                    type="number"
+                    id="editarValor"
+                    step="0.01">
+
+            </div>
+
+            <div class="campo">
+
+                <label>Categoria</label>
+
+                <select id="editarCategoria">
+
+                    <option>Alimentação</option>
+                    <option>Moradia</option>
+                    <option>Transporte</option>
+                    <option>Lazer</option>
+                    <option>Investimentos</option>
+                    <option>Contas</option>
+                    <option>Outros</option>
+
+                </select>
+
+            </div>
+
+            <button
+                type="submit"
+                id="salvarEdicao">
+
+                Salvar Alterações
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+<!-- ==========================================
+MODAL EXCLUIR
+=========================================== -->
+
+<div id="modalExcluir" class="modal">
+
+    <div class="modal-conteudo">
+
+        <div class="modal-icone">
+
+            <i class="fa-solid fa-triangle-exclamation"></i>
+
+        </div>
+
+        <h2>
+
+            Excluir transação?
+
+        </h2>
+
+        <p>
+
+            Essa ação é permanente e não poderá ser desfeita.
+
+        </p>
+
+        <div class="modal-botoes">
+
+            <button id="cancelarExcluir">
+
+                Cancelar
+
+            </button>
+
+            <button id="confirmarExcluir">
+
+                Excluir
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+MODAL REGRA 70/20/10
+=========================================== -->
+
+<div id="modalRegra" class="modal-transacao">
+
+    <div class="popup-transacao">
+
+        <div class="popup-header">
+
+            <h2>
+
+                <i class="fa-solid fa-lightbulb"></i>
+
+                Como funciona a Regra 70 / 20 / 10?
+
+            </h2>
+
+            <button
+                id="fecharRegra"
+                class="fechar-popup">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+        <div class="conteudo-regra">
+
+            <div class="regra-item">
+
+                <h3>🟢 70% - Gastos Fixos</h3>
+
+                <p>
+                    Aluguel, água, energia, internet, alimentação,
+                    transporte e demais despesas essenciais.
+                </p>
+
+            </div>
+
+            <div class="regra-item">
+
+                <h3>🔵 20% - Lazer</h3>
+
+                <p>
+                    Viagens, cinema, jogos, restaurantes e qualquer
+                    gasto voltado ao entretenimento.
+                </p>
+
+            </div>
+
+            <div class="regra-item">
+
+                <h3>🟡 10% - Investimentos</h3>
+
+                <p>
+                    Reserva de emergência, renda fixa, ações,
+                    criptomoedas ou qualquer investimento.
+                </p>
+
+            </div>
+
+            <div class="regra-item">
+
+                <h3>🏆 Sistema de XP</h3>
+
+                <p>
+
+                    Quanto mais você respeitar sua meta financeira,
+                    mais experiência você ganha.
+
+                </p>
+
+                <p>
+
+                    ⭐ Bronze
+
+                    ⭐⭐ Prata
+
+                    ⭐⭐⭐ Ouro
+
+                    ⭐⭐⭐⭐ Diamante
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</main>
+
+<footer>
+
+    <div class="footer-esquerda">
+
+        <strong>
+
+            Finance Dashboard
+
+        </strong>
+
+        <p>
+
+            Desenvolvido para tornar o controle financeiro simples.
+
+        </p>
+
+    </div>
+
+    <div class="footer-direita">
+
+        <a href="sobre.html">
+
+            Sobre
+
+        </a>
+
+        <a href="mailto:maurohenriques167@email.com">
+
+            Contato
+
+        </a>
+
+    </div>
+
+</footer>
+
+<script src="config.js"></script>
+<script src="js/00-estado-auth.js"></script>
+<script src="js/01-dados-dashboard.js"></script>
+<script src="js/02-lista-filtros.js"></script>
+<script src="js/03-grafico.js"></script>
+<script src="js/04-formularios-transacoes.js"></script>
+<script src="js/05-ui-extra.js"></script>
+<script src="js/06-init.js"></script>
+
+</body>
+
+</html>
