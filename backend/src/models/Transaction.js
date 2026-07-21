@@ -42,7 +42,17 @@ const Transaction = sequelize.define("Transaction", {
 },{
 
     tableName:"transactions",
-    timestamps:false
+    timestamps:false,
+
+    // Toda consulta de transações filtra por userId (GET, DELETE, PUT).
+    // Sem esse índice, o MySQL faz uma varredura completa da tabela
+    // a cada requisição — o que fica cada vez mais lento à medida
+    // que o número de transações cresce.
+    indexes:[
+        {
+            fields:["userId"]
+        }
+    ]
 
 });
 

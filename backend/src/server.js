@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 
+require("dotenv").config();
+
 const sequelize = require("./config/database");
 
 // Carregar modelos
@@ -22,7 +24,18 @@ const app = express();
 // MIDDLEWARES
 // ===============================
 
-app.use(cors());
+// Defina ALLOWED_ORIGINS no .env (separadas por vírgula) para restringir
+// quem pode chamar a API em produção, ex:
+// ALLOWED_ORIGINS=https://seu-frontend.com,https://outro-dominio.com
+// Sem essa variável, libera geral (útil em desenvolvimento local).
+const origensPermitidas = process.env.ALLOWED_ORIGINS
+    ? process.env.ALLOWED_ORIGINS.split(",").map(o => o.trim())
+    : null;
+
+app.use(cors({
+    origin: origensPermitidas || true,
+    credentials: true
+}));
 
 app.use(express.json());
 
@@ -63,52 +76,40 @@ app.use("/users", userRoutes);
 
 
 // ===============================
-// BANCO DE DADOS
-// ===============================
-
-sequelize.authenticate()
-
-.then(()=>{
-
-    console.log("Banco conectado com sucesso!");
-
-})
-
-.catch((error)=>{
-
-    console.log("Erro no banco:", error);
-
-});
-
-
-
-sequelize.sync()
-
-.then(()=>{
-
-    console.log("Banco sincronizado!");
-
-})
-
-.catch((error)=>{
-
-    console.log("Erro ao sincronizar:", error);
-
-});
-
-
-
-// ===============================
-// SERVIDOR
+// BANCO DE DADOS + SERVIDOR
 // ===============================
 
 const PORT = process.env.PORT || 3000;
 
+async function iniciarServidor() {
 
-app.listen(PORT, ()=>{
+    try {
 
-    console.log(
-        `Servidor rodando na porta ${PORT}`
-    );
+        await sequelize.authenticate();
 
-});
+        console.log("✅ Banco conectado com sucesso!");
+
+        await sequelize.sync();
+
+        console.log("✅ Banco sincronizado!");
+
+        app.listen(PORT, () => {
+
+            console.log(
+                `🚀 Servidor rodando na porta ${PORT}`
+            );
+
+        });
+
+    } catch (error) {
+
+        console.error(
+            "❌ Erro ao iniciar servidor:",
+            error
+        );
+
+    }
+
+}
+
+iniciarServidor();

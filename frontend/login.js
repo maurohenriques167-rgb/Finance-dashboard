@@ -1,7 +1,3 @@
-console.log("LOGIN JS CARREGOU");
-const API = "https://finance-dashboard-qr30.onrender.com";
-
-
 const formulario = document.getElementById("loginForm");
 
 
@@ -22,10 +18,6 @@ formulario.addEventListener("submit", async(e)=>{
         document.getElementById("password").value
 
     };
-
-
-
-    console.log("Tentando login:", dados);
 
 
 
@@ -63,10 +55,6 @@ formulario.addEventListener("submit", async(e)=>{
 
 
 
-        console.log("Resposta:", resultado);
-
-
-
         if(resposta.ok){
 
 
@@ -98,7 +86,7 @@ formulario.addEventListener("submit", async(e)=>{
         }else{
 
 
-            document.getElementById("mensagem").innerHTML =
+            document.getElementById("mensagem").textContent =
 
             resultado.erro;
 
@@ -110,7 +98,10 @@ formulario.addEventListener("submit", async(e)=>{
     }catch(error){
 
 
-        console.log("Erro:",error);
+        console.error("Erro ao fazer login:", error);
+
+        document.getElementById("mensagem").textContent =
+        "Não foi possível conectar ao servidor. Tente novamente.";
 
 
     }

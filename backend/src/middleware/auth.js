@@ -27,10 +27,6 @@ function auth(req,res,next){
             process.env.JWT_SECRET
         );
 
-          console.log("TOKEN RECEBIDO:", token);
-          console.log("TOKEN DECODIFICADO:", decoded);
-        
-
 
         req.user = decoded;
 
@@ -42,7 +38,7 @@ function auth(req,res,next){
     }catch(error){
 
 
-        console.log(error);
+        console.error("Falha na autenticação:", error.message);
 
 
         return res.status(401).json({

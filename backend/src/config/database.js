@@ -1,5 +1,4 @@
 const { Sequelize } = require("sequelize");
-require("dotenv").config();
 
 const sequelize = new Sequelize(
     process.env.DB_NAME,
@@ -15,6 +14,17 @@ const sequelize = new Sequelize(
                 require:true,
                 rejectUnauthorized:false
             }
+        },
+
+        // Pool de conexões: evita abrir uma conexão nova a cada
+        // requisição (caro) e evita esgotar o limite de conexões
+        // do MySQL sob carga. Valores padrão do Sequelize já eram
+        // razoáveis (max 5), deixamos explícito e configurável.
+        pool:{
+            max: Number(process.env.DB_POOL_MAX) || 5,
+            min: 0,
+            acquire: 30000,
+            idle: 10000
         },
 
         logging:false

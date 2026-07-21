@@ -1,9 +1,3 @@
-console.log("CADASTRO JS CARREGOU");
-
-
-const API = "https://finance-dashboard-qr30.onrender.com";
-
-
 const formulario = document.getElementById("cadastroForm");
 
 
@@ -33,7 +27,7 @@ if(senha !== confirmarSenha){
     document.getElementById("mensagem").style.color = "red";
 
 
-    document.getElementById("mensagem").innerHTML =
+    document.getElementById("mensagem").textContent =
     "As senhas não coincidem";
 
 
@@ -58,10 +52,6 @@ const dados = {
 
 
 };
-
-
-
-    console.log("Dados enviados:", dados);
 
 
 
@@ -94,10 +84,6 @@ const dados = {
 
 
 
-        console.log("Resposta:", resultado);
-
-
-
         const mensagem =
         document.getElementById("mensagem");
 
@@ -109,7 +95,7 @@ const dados = {
             mensagem.style.color="green";
 
 
-            mensagem.innerHTML =
+            mensagem.textContent =
             "Cadastro realizado! Indo para login...";
 
 
@@ -130,7 +116,7 @@ const dados = {
             mensagem.style.color="red";
 
 
-            mensagem.innerHTML =
+            mensagem.textContent =
             resultado.erro || "Erro ao cadastrar";
 
 
@@ -141,10 +127,10 @@ const dados = {
     }catch(error){
 
 
-        console.log(error);
+        console.error("Erro ao cadastrar:", error);
 
 
-        document.getElementById("mensagem").innerHTML =
+        document.getElementById("mensagem").textContent =
         "Erro de conexão";
 
 
